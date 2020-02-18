@@ -20,15 +20,25 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('shop')->group(function (){
     Route::get('', function () {
         return view("shop.home");
-    });
+    })->name('shop.home');
 });
 
 Route::prefix('admin')->group(function(){
     Route::get('', function () {
         return view('admin.home');
-    });
+    })->name('admin.home');
     Route::prefix('user')->group(function () {
-        Route::get('', 'UserController@index')->name('admin.user.index');
+        Route::get('/', 'UserController@index')->name('admin.user.index');
+        Route::get('/create', 'UserController@showFormCreate')->name('admin.user.create');
+        Route::post('/store', 'UserController@store')->name('admin.user.store');
+        Route::get('/{id}/edit', 'UserController@showFormEdit')->name('admin.user.edit');
+        Route::post('/{id}/update', 'UserController@update')->name('admin.user.update');
+        Route::get('/{id}/delete', 'UserController@delete')->name('admin.user.delete');
+        Route::get('/search', 'UserController@search')->name('admin.user.search');
+    });
+
+    Route::get('form', function () {
+       return view('admin.form');
     });
 });
 
