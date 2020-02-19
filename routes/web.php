@@ -30,7 +30,13 @@ Route::prefix('admin')->group(function(){
     Route::prefix('user')->group(function () {
         Route::get('', 'UserController@index')->name('admin.user.index');
     });
+    Route::prefix('product')->group(function (){
+        Route::get('/','ProductController@index')->name('product.list');
+        Route::get('/create','ProductController@create')->name('product.create');
+        Route::post('/store','ProductController@store')->name('product.store');
+    });
 });
+
 
 Route::get('/login','LoginController@index')->name('login.index');
 Route::post('/login','LoginController@login')->name('login');

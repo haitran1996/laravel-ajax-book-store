@@ -5,9 +5,16 @@ namespace App\Http\Repositories;
 
 
 use App\Contracts\Product\ProductRepositoryInterface;
+use App\Product;
 
 class ProductRepository implements ProductRepositoryInterface
 {
+    protected $product;
+
+    public function __construct(Product $product)
+    {
+        $this->product = $product;
+    }
 
     public function model()
     {
@@ -16,7 +23,7 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function all()
     {
-        // TODO: Implement all() method.
+        return $this->product->all();
     }
 
     public function delete($obj)
@@ -31,7 +38,7 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function store($obj)
     {
-        // TODO: Implement store() method.
+        $obj->save();
     }
 
     public function search($keyword)

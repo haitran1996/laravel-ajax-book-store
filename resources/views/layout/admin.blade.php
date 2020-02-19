@@ -334,13 +334,12 @@
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
                         <i class="icon_desktop"></i>
-                        <span>UI Fitures</span>
+                        <span>Product</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="general.html">Elements</a></li>
-                        <li><a class="" href="buttons.html">Buttons</a></li>
-                        <li><a class="" href="grids.html">Grids</a></li>
+                        <li><a class="" href="{{route('product.list')}}">List</a></li>
+                        <li><a class="" href="{{route('product.create')}}">Add new</a></li>
                     </ul>
                 </li>
                 <li>
