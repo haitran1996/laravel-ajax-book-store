@@ -1,7 +1,7 @@
 @extends('layout.admin')
 @section('title','List Users')
+@section('repo','user')
 @section('content')
-    <section class="wrapper">
         @section('path')
             <li><i class="fa fa-user"></i><a href="{{route('admin.user.index')}}">User</a></li>
             <li><i class="fa fa-th-list"></i>User list</li>
@@ -52,5 +52,24 @@
             </div>
         </div>
         <!-- page end-->
-    </section>
-    @endsection
+<script>
+    $('#user').on('keyup',function(){
+        $value = $(this).val();
+        $.ajax({
+            type: 'GET',
+            url: '{{ route('admin.user.search') }}',
+            data: {
+                'keyword': $value
+            },
+            success:function(data){
+                if (data) {
+                    $('tbody').html(data);
+                } else {
+                    $()
+                }
+            }
+        });
+    })
+    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+</script>
+@endsection

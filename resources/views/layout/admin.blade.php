@@ -34,6 +34,8 @@
     <link href="{{ asset("css/style-responsive.css") }}" rel="stylesheet" />
     <link href="{{asset("css/xcharts.min.css")}}" rel=" stylesheet">
     <link href="{{asset("css/jquery-ui-1.10.4.min.css")}}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <!-- =======================================================
       Theme Name: NiceAdmin
       Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -61,7 +63,7 @@
             <ul class="nav top-menu">
                 <li>
                     <form class="navbar-form">
-                        <input class="form-control" placeholder="Search" type="text">
+                        <input class="form-control" id="@yield('repo')" placeholder="Search" type="text" name="keyword">
                     </form>
                 </li>
             </ul>
