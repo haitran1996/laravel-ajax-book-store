@@ -21,6 +21,9 @@ Route::prefix('shop')->group(function (){
     Route::get('', function () {
         return view("shop.home");
     })->name('shop.home');
+    Route::get('/cart', function () {
+       return view('shop.shop-cart');
+    });
 });
 
 Route::prefix('admin')->group(function(){
