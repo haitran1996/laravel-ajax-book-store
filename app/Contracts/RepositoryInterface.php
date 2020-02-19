@@ -8,7 +8,7 @@ interface RepositoryInterface
 {
     public function model(); //return doi tuong.
 
-    public function all();
+    public function all($paginate);
 
     public function delete($obj);
 

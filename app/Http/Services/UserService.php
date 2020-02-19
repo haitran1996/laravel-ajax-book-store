@@ -4,43 +4,52 @@
 namespace App\Http\Services;
 
 
+use App\Contracts\User\UserRepositoryInterface;
 use App\Contracts\User\UserServiceInterface;
 
 class UserService implements UserServiceInterface
 {
+    protected $userRepo;
 
-    public function all()
+    public function __construct(UserRepositoryInterface $userRepo)
     {
-        // TODO: Implement all() method.
+        $this->userRepo = $userRepo;
+    }
+
+    public function all($paginate=null)
+    {
+        return $this->userRepo->all($paginate);
     }
 
     public function create($request)
     {
-        // TODO: Implement create() method.
+        $user = $this->userRepo->model();
+
+        $user->fill($request->input());
+
+        $this->userRepo->store($user);
     }
 
-    public function edit($request)
+    public function getById($id)
     {
-        // TODO: Implement edit() method.
+        return $this->userRepo->getById($id);
+    }
+
+    public function edit($request, $id)
+    {
+        $user = $this->userRepo->model();
+        $user->fill($request->input());
+        $this->userRepo->update($user);
     }
 
     public function delete($id)
     {
-        // TODO: Implement delete() method.
-    }
-
-    public function update($request, $id)
-    {
-        // TODO: Implement update() method.
-    }
-
-    public function store($request)
-    {
-        // TODO: Implement store() method.
+        $user = $this->userRepo->getById($id);
+        $this->userRepo->delete($user);
     }
 
     public function search($keyword)
     {
-        // TODO: Implement search() method.
+        return $this->userRepo->search($keyword);
     }
 }

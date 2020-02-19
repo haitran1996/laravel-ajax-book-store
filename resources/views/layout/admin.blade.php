@@ -34,6 +34,8 @@
     <link href="{{ asset("css/style-responsive.css") }}" rel="stylesheet" />
     <link href="{{asset("css/xcharts.min.css")}}" rel=" stylesheet">
     <link href="{{asset("css/jquery-ui-1.10.4.min.css")}}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <!-- =======================================================
       Theme Name: NiceAdmin
       Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -53,7 +55,7 @@
         </div>
 
         <!--logo start-->
-        <a href="index.html" class="logo">Nice <span class="lite">Admin</span></a>
+        <a href={{ route('admin.home') }} class="logo">Nice <span class="lite">Admin</span></a>
         <!--logo end-->
 
         <div class="nav search-row" id="top_menu">
@@ -61,7 +63,7 @@
             <ul class="nav top-menu">
                 <li>
                     <form class="navbar-form">
-                        <input class="form-control" placeholder="Search" type="text">
+                        <input class="form-control" id="@yield('repo')" placeholder="Search" type="text" name="keyword">
                     </form>
                 </li>
             </ul>
@@ -170,7 +172,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src="./img/avatar-mini.jpg"></span>
+                                <span class="photo"><img alt="avatar" src="{{asset('img/avatar-mini.jpg')}}"></span>
                                 <span class="subject">
                                     <span class="from">Greg  Martin</span>
                                     <span class="time">1 min</span>
@@ -182,7 +184,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src="./img/avatar-mini2.jpg"></span>
+                                <span class="photo"><img alt="avatar" src="{{ asset('img/avatar-mini2.jpg') }}"></span>
                                 <span class="subject">
                                     <span class="from">Bob   Mckenzie</span>
                                     <span class="time">5 mins</span>
@@ -194,7 +196,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src="./img/avatar-mini3.jpg"></span>
+                                <span class="photo"><img alt="avatar" src="{{ asset('img/avatar-mini3.jpg') }}"></span>
                                 <span class="subject">
                                     <span class="from">Phillip   Park</span>
                                     <span class="time">2 hrs</span>
@@ -206,7 +208,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src="./img/avatar-mini4.jpg"></span>
+                                <span class="photo"><img alt="avatar" src="{{ asset('img/avatar-mini4.jpg') }}"></span>
                                 <span class="subject">
                                     <span class="from">Ray   Munoz</span>
                                     <span class="time">1 day</span>
@@ -315,7 +317,7 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
                 <li class="active">
-                    <a class="" href="index.html">
+                    <a class="" href="{{ route('admin.home') }}">
                         <i class="icon_house_alt"></i>
                         <span>Dashboard</span>
                     </a>
@@ -334,7 +336,7 @@
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
                         <i class="icon_desktop"></i>
-                        <span>Product</span>
+                        <span>Book</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
@@ -342,45 +344,22 @@
                         <li><a class="" href="{{route('product.create')}}">Add new</a></li>
                     </ul>
                 </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="fa fa-user"></i>
+                        <span>User</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="{{ route('admin.user.index') }}">List</a></li>
+                        <li><a class="" href="{{ route('admin.user.create') }}">Create</a></li>
+                    </ul>
+                </li>
                 <li>
                     <a class="" href="widgets.html">
                         <i class="icon_genius"></i>
                         <span>Widgets</span>
                     </a>
-                </li>
-                <li>
-                    <a class="" href="chart-chartjs.html">
-                        <i class="icon_piechart"></i>
-                        <span>Charts</span>
-
-                    </a>
-
-                </li>
-
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="icon_table"></i>
-                        <span>Tables</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-                    <ul class="sub">
-                        <li><a class="" href="basic_table.html">Basic Table</a></li>
-                    </ul>
-                </li>
-
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="icon_documents_alt"></i>
-                        <span>Pages</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-                    <ul class="sub">
-                        <li><a class="" href="profile.html">Profile</a></li>
-                        <li><a class="" href="login.html"><span>Login Page</span></a></li>
-                        <li><a class="" href="contact.html"><span>Contact Page</span></a></li>
-                        <li><a class="" href="blank.html">Blank Page</a></li>
-                        <li><a class="" href="404.html">404 Error</a></li>
-                    </ul>
                 </li>
 
             </ul>
@@ -395,10 +374,10 @@
             <!--overview start-->
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
+                    <h3 class="page-header"><i class="fa fa-user"></i> @yield('title')</h3>
                     <ol class="breadcrumb">
-                        <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-                        <li><i class="fa fa-laptop"></i>Dashboard</li>
+                        <li><i class="fa fa-home"></i><a href="{{ route('admin.home') }}">Home</a></li>
+                        @yield('path')
                     </ol>
                 </div>
             </div>

@@ -21,19 +21,19 @@ class ProductRepository implements ProductRepositoryInterface
         // TODO: Implement model() method.
     }
 
-    public function all()
+    public function all($paginate)
     {
         return $this->product->all();
     }
 
     public function delete($obj)
     {
-        // TODO: Implement delete() method.
+        $obj->delete();
     }
 
     public function update($obj)
     {
-        // TODO: Implement update() method.
+        $obj->save();
     }
 
     public function store($obj)
@@ -44,5 +44,10 @@ class ProductRepository implements ProductRepositoryInterface
     public function search($keyword)
     {
         // TODO: Implement search() method.
+    }
+
+    public function findById($id)
+    {
+        return $this->product->findOrFail($id);
     }
 }
