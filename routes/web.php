@@ -58,3 +58,15 @@ Route::get('/login','LoginController@index')->name('login.index');
 Route::post('/login','LoginController@login')->name('login');
 Route::get('/logout','LoginController@logout')->name('logout');
 
+
+Route::prefix('/category')->group(function () {
+    Route::get('/', 'CategoryController@index')->name('category.list');
+    Route::get('/create', 'CategoryController@create')->name('category.create');
+    Route::post('/create', 'CategoryController@store')->name('category.store');
+    Route::get('/delete/{id}', 'CategoryController@delete')->name('category.delete');
+    Route::get('/{id}/edit', 'CategoryController@edit')->name('category.edit');
+    Route::post('/{id}/update', 'CategoryController@update')->name('category.update');
+    Route::post('/search', 'CategoryController@search')->name('category.search');
+
+});
+
