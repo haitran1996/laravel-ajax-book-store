@@ -6,17 +6,13 @@ namespace App\Contracts;
 
 interface ServiceInterface
 {
-    public function all();
+    public function all($paginate);
 
     public function create($request);
 
-    public function edit($request);
+    public function edit($request, $id);
 
     public function delete($id);
-
-    public function update($request, $id);
-
-    public function store($request);
 
     public function search($keyword);
 }

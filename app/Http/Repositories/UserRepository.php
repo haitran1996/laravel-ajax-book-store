@@ -5,37 +5,53 @@ namespace App\Http\Repositories;
 
 
 use App\Contracts\User\UserRepositoryInterface;
+use App\User;
 
 class UserRepository implements UserRepositoryInterface
 {
+    protected $user;
+
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
 
     public function model()
     {
-        // TODO: Implement model() method.
+        return $this->user;
     }
 
-    public function all()
+    public function all($paginate=null)
     {
-        // TODO: Implement all() method.
+        if ($paginate) {
+            return $this->user->paginate($paginate);
+        }
+        return $this->user->all();
     }
 
-    public function delete($obj)
+    public function getById($id)
     {
-        // TODO: Implement delete() method.
+        return $this->user->findOrFail($id);
     }
 
-    public function update($obj)
+    public function delete($user)
     {
-        // TODO: Implement update() method.
+        $user->delete();
     }
 
-    public function store($obj)
+    public function update($user)
     {
-        // TODO: Implement store() method.
+        $user->save();
+    }
+
+    public function store($user)
+    {
+        $user->save();
     }
 
     public function search($keyword)
     {
-        // TODO: Implement search() method.
+        return $this->user->where('name', 'like', "%$keyword%")
+            ->orWhere('email', 'like', "%$keyword%")->get();
     }
 }
