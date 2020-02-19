@@ -85,8 +85,19 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
+//        if ($request->ajax()) {
+//            $output = '';
+//            $users = $this->userService->search($request->keyword);
+//            if ($users) {
+//                foreach ($users as $key => $user) {
+//                    //
+//
+//                }
+//            }
+//
+//            return Response($output);
+//        }
         $users = $this->userService->search($request->keyword);
-
         return view('admin.user.index', compact('users'));
     }
 }

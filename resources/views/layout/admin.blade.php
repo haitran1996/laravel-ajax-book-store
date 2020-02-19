@@ -35,6 +35,8 @@
     <link href="{{ asset("css/style-responsive.css") }}" rel="stylesheet"/>
     <link href="{{asset("css/xcharts.min.css")}}" rel=" stylesheet">
     <link href="{{asset("css/jquery-ui-1.10.4.min.css")}}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <!-- =======================================================
       Theme Name: NiceAdmin
       Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -63,7 +65,7 @@
             <ul class="nav top-menu">
                 <li>
                     <form class="navbar-form">
-                        <input class="form-control" placeholder="Search" type="text">
+                        <input class="form-control" id="@yield('repo')" placeholder="Search" type="text" name="keyword">
                     </form>
                 </li>
             </ul>
@@ -340,6 +342,17 @@
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
+                        <i class="icon_desktop"></i>
+                        <span>Book</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="{{route('product.list')}}">List</a></li>
+                        <li><a class="" href="{{route('product.create')}}">Add new</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
                         <i class="fa fa-user"></i>
                         <span>User</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
@@ -379,10 +392,10 @@
             <!--overview start-->
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
+                    <h3 class="page-header"><i class="fa fa-user"></i> @yield('title')</h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li><i class="fa fa-laptop"></i>Dashboard</li>
+                        @yield('path')
                     </ol>
                 </div>
             </div>

@@ -1,17 +1,11 @@
 @extends('layout.admin')
 @section('title','List Users')
+@section('repo','user')
 @section('content')
-    <section class="wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa-table"></i> Table</h3>
-                <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i><a href="{{ route('admin.home') }}">Home</a></li>
-                    <li><i class="fa fa-table"></i>Table</li>
-                    <li><i class="fa fa-th-list"></i>Basic Table</li>
-                </ol>
-            </div>
-        </div>
+        @section('path')
+            <li><i class="fa fa-user"></i><a href="{{route('admin.user.index')}}">User</a></li>
+            <li><i class="fa fa-th-list"></i>User list</li>
+            @endsection
         <!-- page start-->
         <div class="row">
             <div class="col-lg-12">
@@ -27,12 +21,13 @@
                             <th><i class="icon_calendar"></i> Created date</th>
                             <th><i class="icon_mail_alt"></i> Email</th>
                             <th><i class="icon_pin_alt"></i> Role</th>
+                            <th><i class="icon_cogs"></i> Action</th>
                             <th></th>
                         </tr>
                         @forelse($users as $user)
                             <tr>
                             <td>{{ $user->name }}</td>
-                            <td>{{ $user->created_date  }}</td>
+                            <td>{{ $user->created_at  }}</td>
                             <td>{{ $user->email }}</td>
                             <td></td>
                             <td>
@@ -57,5 +52,24 @@
             </div>
         </div>
         <!-- page end-->
-    </section>
-    @endsection
+<script>
+    $('#user').on('keyup',function(){
+        $value = $(this).val();
+        $.ajax({
+            type: 'GET',
+            url: '{{ route('admin.user.search') }}',
+            data: {
+                'keyword': $value
+            },
+            success:function(data){
+                if (data) {
+                    $('tbody').html(data);
+                } else {
+                    $()
+                }
+            }
+        });
+    })
+    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+</script>
+@endsection
