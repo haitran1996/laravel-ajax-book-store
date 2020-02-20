@@ -20,7 +20,8 @@
 <body class="templatemo-bg-image-1">
 <div class="container">
     <div class="col-md-12">
-        <form class="form-horizontal templatemo-login-form-2" role="form" action="{{ route('login') }}" method="post">
+        <form class="form-horizontal templatemo-login-form-2" role="form"
+              action="{{ route('login') }}" method="post">
             @csrf
             <div class="row">
                 <div class="col-md-12">
@@ -36,11 +37,12 @@
                                 <i class="fa fa-envelope"></i>
                                 <input type="email" name="email" class="form-control @error('email') alert-danger @enderror" id="email" value="{{ old('email') }}">
                             </div>
+                            @error('email')
+                            <p style="color: red">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
-                    @error('email')
-                    <p style="color: deeppink">{{ $message }}</p>
-                    @enderror
+
                     <div class="form-group">
                         <div class="col-md-12">
                             <label for="password" class="control-label" >Password</label>
@@ -50,11 +52,15 @@
                                        value="{{ old('password') }}"name="password">
                             </div>
                             <i class="fa fa-eye" style="position:relative; top: -27px; left: 259px " id="eye"></i>
+                            @error('password')
+                            <p style="color: red">{{ $message }}</p>
+                            @else
+                                @if(Session::has('wrong'))
+                                    <p style="color: red">{{Session::get('wrong')}}</p>
+                                @endif
+                                @enderror
                         </div>
                     </div>
-                    @error('password')
-                    <p style="color: deeppink">{{ $message }}</p>
-                    @enderror
 
                     <div class="form-group">
                         <div class="col-md-12">
