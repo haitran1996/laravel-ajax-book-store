@@ -27,12 +27,13 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define("crud-user",function ($user){
-            if ($user->role == RoleConstant::ADMIN){
-                return true;
-            }
-            return false;
+            return ($user->role == RoleConstant::ADMIN);
         });
 
-        //
+        Gate::define('user',function ($user){
+           return ($user->role <= RoleConstant::USER);
+
+        });
+
     }
 }

@@ -52,7 +52,7 @@
                         <li class="navbar-item">
 {{--                           C1 phan quyen trong view--}}
 {{--                            C2 phan quyen trong controller'function index'--}}
-                            @can('crud-user')
+                            @can('user')
                                 <span class="nav-link" style="color: #363636">Hello, {{Auth::user()->name}}</span>
                             @else
                             <a href="{{route('login')}}" class="nav-link">Login</a>
