@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Product\ProductServiceInterface;
+use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -50,4 +51,5 @@ class ProductController extends Controller
         $this->productService->edit($request,$id);
         return redirect()->route('product.list');
     }
+
 }

@@ -67,6 +67,10 @@ Route::prefix('/category')->group(function () {
     Route::get('/{id}/edit', 'CategoryController@edit')->name('category.edit');
     Route::post('/{id}/update', 'CategoryController@update')->name('category.update');
     Route::post('/search', 'CategoryController@search')->name('category.search');
-
 });
+
+
+
+
+
 

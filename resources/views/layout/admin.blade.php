@@ -373,6 +373,19 @@
                         <li><a class="" href="{{ route('category.list') }}">List Category</a></li>
                     </ul>
                 </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                        <span>Postd</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="{{ route('post.index') }}">List Post</a></li>
+                        <li><a class="" href="{{ route('post.create') }}">Create Post</a></li>
+                    </ul>
+                </li>
+
                 <li>
                     <a class="" href="widgets.html">
                         <i class="icon_genius"></i>
