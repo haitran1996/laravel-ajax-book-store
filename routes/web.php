@@ -24,6 +24,10 @@ Route::prefix('shop')->group(function (){
     Route::get('/cart', function () {
        return view('shop.shop-cart');
     });
+    Route::get('/product-page',function () {
+       return view('shop.product-page');
+    });
+    Route::post('/product-page', 'CartController@add')->name('cart.add');
 });
 
 Route::middleware(['checkLogin','checkAdmin'])->prefix('admin')->group(function(){

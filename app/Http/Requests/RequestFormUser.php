@@ -24,9 +24,9 @@ class RequestFormUser extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|min:4',
+            'name' => 'required|min:4',
             'email' => 'required|unique:users,email|email',
-            'password' => 'required|min:6'
+            'password' => 'required|confirmed|min:6'
         ];
     }
 }
