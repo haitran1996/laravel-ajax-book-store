@@ -71,10 +71,9 @@ Route::group(['middleware' => 'web'], function () {
             Route::get('/{id}/edit', 'BlogController@edit')->name('admin.blog.edit');
             Route::post('/{id}/update', 'BlogController@update')->name('admin.blog.update');
 
+      });
 
 
-        });
-    });
 
 
     Route::get('/login', 'LoginController@index')->name('login.index');
@@ -83,5 +82,4 @@ Route::group(['middleware' => 'web'], function () {
 
 
 });
-
 

@@ -385,6 +385,7 @@
                         <li><a class="" href="{{ route('admin.blog.list') }}">List Blog</a></li>
                     </ul>
                 </li>
+
                 <li>
                     <a class="" href="widgets.html">
                         <i class="icon_genius"></i>

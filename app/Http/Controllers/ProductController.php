@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Product\ProductServiceInterface;
+
 use App\Http\Requests\RequestFormProduct;
 use App\Product;
 use Illuminate\Http\Request;
@@ -53,9 +54,11 @@ class ProductController extends Controller
         return redirect()->route('product.list');
     }
 
+
     public function search(Request $request)
     {
       $products = Product::where('name', 'LIKE', '%'.$request->keyword . '%' )->get();
       return response()->json(['data'=>$products]);
     }
+
 }
