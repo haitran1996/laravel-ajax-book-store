@@ -7,6 +7,7 @@
             <li><i class="fa fa-th-list"></i>User list</li>
             @endsection
         <!-- page start-->
+        @can('crud-user')
         <div class="row">
             <div class="col-lg-12">
                 <section class="panel">
@@ -52,6 +53,7 @@
                 </section>
             </div>
         </div>
+        @endcan
         <!-- page end-->
 <script>
     $('#user').on('keyup',function(){

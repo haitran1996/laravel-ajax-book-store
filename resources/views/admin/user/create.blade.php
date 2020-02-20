@@ -5,6 +5,7 @@
         <li><i class="fa fa-user"></i><a href="{{ route('admin.user.index') }}">User</a></li>
         <li><i class="fa fa-user"></i>Create User</li>
         @endsection
+@can('curd-user')
     <div class="row">
         <div class="col-lg-12">
             <section class="panel">
@@ -67,4 +68,5 @@
             </section>
         </div>
     </div>
+    @endcan
     @endsection

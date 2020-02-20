@@ -30,7 +30,7 @@ Route::prefix('shop')->group(function (){
     Route::post('/product-page', 'CartController@add')->name('cart.add');
 });
 
-Route::prefix('admin')->group(function(){
+Route::middleware(['checkLogin','checkAdmin'])->prefix('admin')->group(function(){
     Route::get('', function () {
         return view('admin.home');
     })->name('admin.home');
@@ -53,7 +53,8 @@ Route::prefix('admin')->group(function(){
         Route::post('/store','ProductController@store')->name('product.store');
         Route::get('/{id}/delete','ProductController@delete')->name('product.delete');
         Route::get('/{id}/edit','ProductController@edit')->name('product.edit');
-        Route::get('/{id}/update','ProductController@update')->name('product.update');
+        Route::post('/{id}/update','ProductController@update')->name('product.update');
+        Route::post('/search','ProductController@search')->name('product.search');
     });
 });
 
@@ -61,4 +62,16 @@ Route::prefix('admin')->group(function(){
 Route::get('/login','LoginController@index')->name('login.index');
 Route::post('/login','LoginController@login')->name('login');
 Route::get('/logout','LoginController@logout')->name('logout');
+
+
+Route::prefix('/category')->group(function () {
+    Route::get('/', 'CategoryController@index')->name('category.list');
+    Route::get('/create', 'CategoryController@create')->name('category.create');
+    Route::post('/create', 'CategoryController@store')->name('category.store');
+    Route::get('/delete/{id}', 'CategoryController@delete')->name('category.delete');
+    Route::get('/{id}/edit', 'CategoryController@edit')->name('category.edit');
+    Route::post('/{id}/update', 'CategoryController@update')->name('category.update');
+    Route::post('/search', 'CategoryController@search')->name('category.search');
+
+});
 
