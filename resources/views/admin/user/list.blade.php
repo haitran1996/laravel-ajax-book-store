@@ -7,6 +7,7 @@
             <li><i class="fa fa-th-list"></i>User list</li>
             @endsection
         <!-- page start-->
+        @can('crud-user')
         <div class="row">
             <div class="col-lg-12">
                 <section class="panel">
@@ -15,7 +16,7 @@
                     </header>
 
                     <table class="table table-striped table-advance table-hover">
-                        <tbody>
+                        <thead>
                         <tr>
                             <th><i class="icon_profile"></i> Name</th>
                             <th><i class="icon_calendar"></i> Created date</th>
@@ -24,6 +25,8 @@
                             <th><i class="icon_cogs"></i> Action</th>
                             <th></th>
                         </tr>
+                        </thead>
+                        <tbody>
                         @forelse($users as $user)
                             <tr>
                             <td>{{ $user->name }}</td>
@@ -33,7 +36,6 @@
                             <td>
                                 <div class="btn-group">
                                     <a class="btn btn-primary" href="{{route('admin.user.edit', $user->id)}}"><i class="icon_plus_alt2"></i></a>
-                                    <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
                                     <a class="btn btn-danger" href="{{route('admin.user.delete', $user->id)}}"><i class="icon_close_alt2"></i></a>
                                 </div>
                             </td>
@@ -51,6 +53,7 @@
                 </section>
             </div>
         </div>
+        @endcan
         <!-- page end-->
 <script>
     $('#user').on('keyup',function(){
@@ -65,11 +68,11 @@
                 if (data) {
                     $('tbody').html(data);
                 } else {
-                    $()
+                    $('tdoby').html("<tr><td>No data searched! Try another keyword!</td></tr>");
                 }
             }
         });
-    })
+    });
     $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 </script>
 @endsection

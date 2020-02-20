@@ -46,12 +46,12 @@ class UserRepository implements UserRepositoryInterface
 
     public function store($user)
     {
-        $user->save();
+        return $user->save();
     }
 
     public function search($keyword)
     {
         return $this->user->where('name', 'like', "%$keyword%")
-            ->orWhere('email', 'like', "%$keyword%")->get();
+            ->orWhere('email', 'like', "%$keyword%")->paginate(10);
     }
 }

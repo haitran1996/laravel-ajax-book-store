@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RequestFormLogin;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -19,11 +21,14 @@ class LoginController extends Controller
             'email' => $request->email,
             'password'=>$request->password
         ];
-
-        if (Auth::attempt($data)){
-            return redirect('/admin');
+        $remember = $request->remember;
+        if (Auth::attempt($data,$remember)){
+            if (Auth::user()->role == RoleConstant::ADMIN) {
+                return redirect('/admin');
+            }
+            return redirect('/shop');
         }
-        return back();
+        return back()->with('wrong', "Wrong password! Try again!");
     }
 
     public function logout()

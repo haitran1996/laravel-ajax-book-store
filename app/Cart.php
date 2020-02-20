@@ -34,6 +34,8 @@ class Cart
     public function add($id)
     {
         $this->items[$id] = $this->getProductById($id);
+        $this->totalPrice += $this->items[$id]->price;
+        $this->totalItems++;
     }
 
     public function update($request, $id)

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\RoleConstant;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -25,6 +26,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define("crud-user",function ($user){
+            return ($user->role == RoleConstant::ADMIN);
+        });
+
+        Gate::define('user',function ($user){
+           return ($user->role <= RoleConstant::USER);
+
+        });
+
     }
 }

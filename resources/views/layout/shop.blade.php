@@ -38,10 +38,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="navbar-item active">
-                            <a href="index.html" class="nav-link">Home</a>
+                            <a href="{{route('shop.home')}}" class="nav-link">Home</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="shop.html" class="nav-link">Shop</a>
+                            <a href="{{route("shop.books")}}" class="nav-link">Shop</a>
                         </li>
                         <li class="navbar-item">
                             <a href="about.html" class="nav-link">About</a>
@@ -49,14 +49,47 @@
                         <li class="navbar-item">
                             <a href="faq.html" class="nav-link">FAQ</a>
                         </li>
-                        <li class="navbar-item">
-                            <a href="{{route('login')}}" class="nav-link">Login</a>
-                        </li>
+{{--                           C1 phan quyen trong view--}}
+{{--                            C2 phan quyen trong controller'function index'--}}
+                            @can('user')
+                            <li class="navbar-item">
+                                <span class="nav-link" style="color: #363636">Hello,{{Auth::user()->name}}</span>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="{{route('logout')}}" class="nav-link">Logout</a>
+                            </li>
+                            @else
+                            <li class="nav-link">
+                                <a class="" href="{{route('login')}}" style="color: black">Login/</a>
+                                <a class="" href="{{route('register')}}" style="color: black">Register</a>
+                            </li>
+                                @endcan
                     </ul>
-                    <div class="cart my-2 my-lg-0">
+                    <div class="cart my-2 my-lg-0 dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span>
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-                        <span class="quntity">3</span>
+                        <span class="quntity">@if (session('cart')) {{ session('cart')->totalItems }} @else 0 @endif</span>
+                        </a>
+                        <ul class="dropdown-menu extended notification">
+{{--                            <div class="notify-arrow notify-arrow-blue">You have</div>--}}
+                            @forelse(session('cart')->items as $key => $item)
+                            <li>
+                                <a href="#">
+                                    <span class="label label-primary"><img src="{{ asset("storage/".$item->image)}}" style="width: 20px"></span>
+                                    <span class="small italic pull-right">{{$item->name}}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">See all books</a>
+                            </li>
+                                @if ($key >= 4)
+                                    @break
+                                @endif
+                                @empty
+                                <li>No book in shop cart!</li>
+                                @endforelse
+                        </ul>
                     </div>
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search here..." aria-label="Search">
@@ -154,6 +187,10 @@
 <script src="{{asset('js/bootstrap-book-store.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('js/custom.js')}}"></script>
+<script>
+
+</script>
+@yield('add-js')
 </body>
 
 </html>

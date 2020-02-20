@@ -8,7 +8,7 @@
     <meta name="author" content="GeeksLabs">
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="{{asset("img/favicon.png")}}">
-
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
     <title>Creative - Bootstrap Admin Template</title>
 
     <!-- Bootstrap CSS -->
@@ -283,7 +283,7 @@
                             <span class="profile-ava">
                                 <img alt="" src="img/avatar1_small.jpg">
                             </span>
-                        <span class="username">Jenifer Smith</span>
+                        <span class="username">{{\Illuminate\Support\Facades\Auth::user()->name}}</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
@@ -301,7 +301,7 @@
                             <a href="#"><i class="icon_chat_alt"></i> Chats</a>
                         </li>
                         <li>
-                            <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
+                            <a href="{{route('logout')}}"><i class="icon_key_alt"></i> Log Out</a>
                         </li>
                         <li>
                             <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
@@ -377,12 +377,12 @@
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
                         <i class="fa fa-list-alt" aria-hidden="true"></i>
-                        <span>Postd</span>
+                        <span>Blog</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="{{ route('post.index') }}">List Post</a></li>
-                        <li><a class="" href="{{ route('post.create') }}">Create Post</a></li>
+                        <li><a class="" href="{{route('admin.blog.create')}}">Create Blog</a></li>
+                        <li><a class="" href="{{ route('admin.blog.list') }}">List Blog</a></li>
                     </ul>
                 </li>
 
@@ -519,7 +519,32 @@
         });
     });
 </script>
+{{--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>--}}
 
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<script>
+    {{--console.log("{{ session()->get('notification') }}")--}}
+        @if(Session::has('message'))
+    let type = "{{Session::get('alert-type','info')}}"
+
+
+    switch (type) {
+        case 'info':
+            toastr.info("{{ Session::get('message') }}");
+            break;
+        case 'success':
+            toastr.success("{{ Session::get('message') }}");
+            break;
+        case 'warning':
+            toastr.warning("{{ Session::get('message') }}");
+            break;
+        case 'error':
+            toastr.error("{{ Session::get('message') }}");
+            break;
+    }
+    @endif
+</script>
 </body>
 
 </html>

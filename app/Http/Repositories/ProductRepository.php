@@ -43,11 +43,13 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function search($keyword)
     {
-        // TODO: Implement search() method.
+        return $this->product->where('name','like',"%$keyword%")->get();
     }
 
     public function findById($id)
     {
         return $this->product->findOrFail($id);
     }
+
+
 }
