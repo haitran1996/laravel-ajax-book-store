@@ -20,7 +20,8 @@
 <body class="templatemo-bg-image-1">
 <div class="container">
     <div class="col-md-12">
-        <form class="form-horizontal templatemo-login-form-2" role="form" action="{{ route('register') }}" method="post">
+        <form class="form-horizontal templatemo-login-form-2" role="form"
+              action="{{ route('login') }}" method="post">
             @csrf
             <div class="row">
                 <div class="col-md-12">
@@ -47,7 +48,7 @@
                             <div class="templatemo-input-icon-container">
                                 <i class="fa fa-lock"></i>
                                 <input type="password" class="form-control" id="password"
-                                       value="{{ old('password') }}"name="password">
+                                       value="{{ old('password') }}" name="password">
                             </div>
                         </div>
                     </div>

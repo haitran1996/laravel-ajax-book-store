@@ -37,8 +37,7 @@ class UserController extends Controller
             $notification = $this->getToarstrNoti('error', 'create');
         }
 
-        return back()->with('notification', $notification);
-
+        return back()->with($notification);
     }
 
     public function showFormEdit($id)
@@ -55,7 +54,7 @@ class UserController extends Controller
             $notification = $this->getToarstrNoti('error', 'update');
         }
 
-        return back()->with('notification', $notification);
+        return back()->with($notification);
     }
 
     public function getToarstrNoti($typeAlert, $action)
@@ -63,12 +62,12 @@ class UserController extends Controller
         if ($typeAlert == "success") {
             return array([
                'message' =>  "The user have been $action",
-                'alert-type' => $typeAlert
+                'alert-type' => "$typeAlert"
             ]);
         }
         return array([
             'message' =>  "Something wrong, try again!",
-            'alert-type' => $typeAlert
+            'alert-type' => "$typeAlert"
         ]);
     }
 
@@ -80,13 +79,34 @@ class UserController extends Controller
             $notification = $this->getToarstrNoti('error', 'delete');
         }
 
-        return back()->with('notification', $notification);
+        return back()->with($notification);
     }
 
     public function search(Request $request)
     {
-        $users = $this->userService->search($request->keyword);
+        if ($request->ajax()) {
+            $output = '';
+            $users = $this->userService->search($request->keyword);
+            if ($users) {
+                $output = '';
+                foreach ($users as $key => $user) {
+                    $output .= "<tr>".
+                            "<td>$user->name</td>".
+                            "<td>$user->created_at</td>".
+                            "<td>$user->emai</td>".
+                            "<td></td>".
+                            "<td>".
+                                "<div class='btn-group'>".
+                                    "<a class='btn btn-primary' href=".route('admin.user.edit', $user->id)."><i class='icon_plus_alt2'></i></a>".
+                                    "<a class='btn btn-danger' href=".route('admin.user.delete', $user->id)."><i class='icon_close_alt2'></i></a>".
+                                "</div>".
+                           "</td></tr>";
+                }
+            }
 
-        return view('admin.user.index', compact('users'));
+            return Response($output);
+        }
+//        $users = $this->userService->search($request->keyword);
+//        return view('admin.user.index', compact('users'));
     }
 }

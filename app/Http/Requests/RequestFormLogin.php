@@ -24,8 +24,16 @@ class RequestFormLogin extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|exists:book_store,email|email',
+            'email' => 'required|exists:users,email|email',
             'password' =>'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'email.required'=>'Ban phai nhap email',
+            'password.required'=>'Ban phai nhap password'
         ];
     }
 }

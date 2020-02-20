@@ -24,6 +24,10 @@ Route::prefix('shop')->group(function (){
     Route::get('/cart', function () {
        return view('shop.shop-cart');
     });
+    Route::get('/product-page',function () {
+       return view('shop.product-page');
+    });
+    Route::post('/product-page', 'CartController@add')->name('cart.add');
 });
 
 Route::prefix('admin')->group(function(){
@@ -43,7 +47,16 @@ Route::prefix('admin')->group(function(){
     Route::get('form', function () {
        return view('admin.form');
     });
+    Route::prefix('product')->group(function (){
+        Route::get('/','ProductController@index')->name('product.list');
+        Route::get('/create','ProductController@create')->name('product.create');
+        Route::post('/store','ProductController@store')->name('product.store');
+        Route::get('/{id}/delete','ProductController@delete')->name('product.delete');
+        Route::get('/{id}/edit','ProductController@edit')->name('product.edit');
+        Route::get('/{id}/update','ProductController@update')->name('product.update');
+    });
 });
+
 
 Route::get('/login','LoginController@index')->name('login.index');
 Route::post('/login','LoginController@login')->name('login');

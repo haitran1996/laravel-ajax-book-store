@@ -8,7 +8,7 @@
     <meta name="author" content="GeeksLabs">
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="{{asset("img/favicon.png")}}">
-
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
     <title>Creative - Bootstrap Admin Template</title>
 
     <!-- Bootstrap CSS -->
@@ -34,6 +34,8 @@
     <link href="{{ asset("css/style-responsive.css") }}" rel="stylesheet" />
     <link href="{{asset("css/xcharts.min.css")}}" rel=" stylesheet">
     <link href="{{asset("css/jquery-ui-1.10.4.min.css")}}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <!-- =======================================================
       Theme Name: NiceAdmin
       Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -61,7 +63,7 @@
             <ul class="nav top-menu">
                 <li>
                     <form class="navbar-form">
-                        <input class="form-control" placeholder="Search" type="text">
+                        <input class="form-control" id="@yield('repo')" placeholder="Search" type="text" name="keyword">
                     </form>
                 </li>
             </ul>
@@ -333,6 +335,17 @@
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
+                        <i class="icon_desktop"></i>
+                        <span>Book</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="{{route('product.list')}}">List</a></li>
+                        <li><a class="" href="{{route('product.create')}}">Add new</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
                         <i class="fa fa-user"></i>
                         <span>User</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
@@ -474,7 +487,32 @@
         });
     });
 </script>
+{{--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>--}}
 
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<script>
+    {{--console.log("{{ session()->get('notification') }}")--}}
+        @if(Session::has('message'))
+    let type = "{{Session::get('alert-type','info')}}"
+
+
+    switch (type) {
+        case 'info':
+            toastr.info("{{ Session::get('message') }}");
+            break;
+        case 'success':
+            toastr.success("{{ Session::get('message') }}");
+            break;
+        case 'warning':
+            toastr.warning("{{ Session::get('message') }}");
+            break;
+        case 'error':
+            toastr.error("{{ Session::get('message') }}");
+            break;
+    }
+    @endif
+</script>
 </body>
 
 </html>
