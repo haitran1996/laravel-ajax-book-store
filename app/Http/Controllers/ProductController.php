@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Product\ProductServiceInterface;
 use App\Http\Requests\RequestFormProduct;
+use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -54,8 +55,7 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-      $products=$this->productService->search($request->keyword);
-      dd($products,$request->keyword);
-      return view('admin.product.list',compact('products'));
+      $products = Product::where('name', 'LIKE', '%'.$request->keyword . '%' )->get();
+      return response()->json(['data'=>$products]);
     }
 }

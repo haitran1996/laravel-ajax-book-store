@@ -50,7 +50,7 @@ Route::middleware(['checkLogin','checkAdmin'])->prefix('admin')->group(function(
         Route::get('/{id}/delete','ProductController@delete')->name('product.delete');
         Route::get('/{id}/edit','ProductController@edit')->name('product.edit');
         Route::post('/{id}/update','ProductController@update')->name('product.update');
-        Route::post('/search','ProductController@search')->name('product.search');
+        Route::get('/search','ProductController@search')->name('product.search');
     });
 });
 

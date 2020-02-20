@@ -49,15 +49,21 @@
                         <li class="navbar-item">
                             <a href="faq.html" class="nav-link">FAQ</a>
                         </li>
-                        <li class="navbar-item">
 {{--                           C1 phan quyen trong view--}}
 {{--                            C2 phan quyen trong controller'function index'--}}
                             @can('user')
-                                <span class="nav-link" style="color: #363636">Hello, {{Auth::user()->name}}</span>
+                            <li class="navbar-item">
+                                <span class="nav-link" style="color: #363636">Hello,{{Auth::user()->name}}</span>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="{{route('logout')}}" class="nav-link">Logout</a>
+                            </li>
                             @else
-                            <a href="{{route('login')}}" class="nav-link">Login</a>
+                            <li class="nav-link">
+                                <a class="" href="{{route('login')}}" style="color: black">Login/</a>
+                                <a class="" href="{{route('register')}}" style="color: black">Register</a>
+                            </li>
                                 @endcan
-                        </li>
                     </ul>
                     <div class="cart my-2 my-lg-0">
                             <span>
