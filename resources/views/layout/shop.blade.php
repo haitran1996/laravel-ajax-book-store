@@ -50,7 +50,13 @@
                             <a href="faq.html" class="nav-link">FAQ</a>
                         </li>
                         <li class="navbar-item">
+{{--                           C1 phan quyen trong view--}}
+{{--                            C2 phan quyen trong controller'function index'--}}
+                            @can('crud-user')
+                                <span class="nav-link" style="color: #363636">Hello, {{Auth::user()->name}}</span>
+                            @else
                             <a href="{{route('login')}}" class="nav-link">Login</a>
+                                @endcan
                         </li>
                     </ul>
                     <div class="cart my-2 my-lg-0">
