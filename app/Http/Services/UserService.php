@@ -6,6 +6,7 @@ namespace App\Http\Services;
 
 use App\Contracts\User\UserRepositoryInterface;
 use App\Contracts\User\UserServiceInterface;
+use Illuminate\Support\Facades\Hash;
 
 class UserService implements UserServiceInterface
 {
@@ -25,7 +26,9 @@ class UserService implements UserServiceInterface
     {
         $user = $this->userRepo->model();
 
-        $user->fill($request->input());
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
 
         $this->userRepo->store($user);
     }

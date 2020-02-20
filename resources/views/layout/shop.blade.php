@@ -166,6 +166,7 @@
 <script src="{{asset('js/bootstrap-book-store.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('js/custom.js')}}"></script>
+@yield('add-js')
 </body>
 
 </html>

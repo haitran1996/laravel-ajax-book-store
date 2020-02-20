@@ -28,7 +28,7 @@ class LoginController extends Controller
             }
             return redirect('/shop');
         }
-        return back();
+        return back()->with('wrong', "Wrong password! Try again!");
     }
 
     public function logout()
