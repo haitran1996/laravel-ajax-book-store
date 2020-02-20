@@ -70,3 +70,9 @@ Route::prefix('/category')->group(function () {
 
 });
 
+Route::prefix('/blog')->group(function (){
+    Route::get('/', 'BlogController@index')->name('blog.list');
+    Route::get('/create', 'BlogController@create')->name('blog.create');
+    Route::post('/create', 'BlogController@store')->name('blog.store');
+});
+
