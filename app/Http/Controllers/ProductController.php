@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Product\ProductServiceInterface;
+use App\Http\Requests\RequestFormProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,15 +20,15 @@ class ProductController extends Controller
     {
 
       $products = DB::table('products')->paginate(5);
-        return view('product.list',compact('products'));
+        return view('admin.product.list',compact('products'));
     }
 
     public function create()
     {
-        return view('product.create');
+        return view('admin.product.create');
     }
 
-    public function store(Request $request)
+    public function store(RequestFormProduct $request)
     {
         $this->productService->create($request);
         return back();
@@ -42,12 +43,19 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = $this->productService->findById($id);
-        return view('product.edit',compact('product'));
+        return view('admin.product.edit',compact('product'));
     }
 
-    public function update(Request $request,$id)
+    public function update(RequestFormProduct $request,$id)
     {
         $this->productService->edit($request,$id);
         return redirect()->route('product.list');
+    }
+
+    public function search(Request $request)
+    {
+      $products=$this->productService->search($request->keyword);
+      dd($products,$request->keyword);
+      return view('admin.product.list',compact('products'));
     }
 }

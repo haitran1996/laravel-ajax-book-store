@@ -26,7 +26,7 @@ Route::prefix('shop')->group(function (){
     });
 });
 
-Route::prefix('admin')->group(function(){
+Route::middleware(['checkLogin','checkAdmin'])->prefix('admin')->group(function(){
     Route::get('', function () {
         return view('admin.home');
     })->name('admin.home');
@@ -49,7 +49,8 @@ Route::prefix('admin')->group(function(){
         Route::post('/store','ProductController@store')->name('product.store');
         Route::get('/{id}/delete','ProductController@delete')->name('product.delete');
         Route::get('/{id}/edit','ProductController@edit')->name('product.edit');
-        Route::get('/{id}/update','ProductController@update')->name('product.update');
+        Route::post('/{id}/update','ProductController@update')->name('product.update');
+        Route::post('/search','ProductController@search')->name('product.search');
     });
 });
 

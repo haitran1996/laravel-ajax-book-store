@@ -6,6 +6,7 @@ use App\Contracts\User\UserServiceInterface;
 use App\Http\Requests\RequestFormUser;
 use App\Http\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -19,6 +20,10 @@ class UserController extends Controller
 
     public function index()
     {
+//        if (!Gate::allows("crud-user")){
+//            abort(403);
+//        }
+
         $paginate =10;
         $users = $this->userService->all($paginate);
         return view('admin.user.list',compact('users'));

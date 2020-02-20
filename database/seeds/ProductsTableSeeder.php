@@ -1,8 +1,10 @@
 <?php
 
+use App\Product;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
-class ProductSeeder extends Seeder
+class ProductsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,9 +13,9 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $product = new \App\Product();
+        $product = new Product();
         $product->name = 'Laptop Dell Insprion';
-        $product->slug = \Illuminate\Support\Str::slug('Laptop Dell Insprion');
+        $product->slug = Str::slug('Laptop Dell Insprion');
         $product->desc = 'Laptop cua moi nha' ;
         $product->price = 17000000 ;
         $product->image = 'dell.jpg';
