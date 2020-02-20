@@ -27,5 +27,8 @@ class UsersTableSeeder extends Seeder
             $user->password = Hash::make('123456');
             $user->save();
         }
+
     }
+
+
 }
