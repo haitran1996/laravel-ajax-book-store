@@ -53,16 +53,23 @@ class ProductService implements ProductServiceInterface
         $product->desc = $request->desc;
         $product->price = $request->price;
 
-        //lay doi tuong file tu input "image"
-        $file = $request->file('image');
-        //luu ten khac cho anh can luu
-        $fileName = $product->slug.'.'.$file->getClientOriginalExtension();
-        //luu anh vao duong dan storage/pulic/images -- luon luon luu vao storage nen ko can phai ghi.
-        // cau truc public/path --path la duong dan de luu.
-        $file->storeAs('public/images', $fileName);
-        $product->image = $fileName;
+        //neu nguoi dung nhap vao anh moi thi luu vao, khong thi van xai anh cu, tuc la ko thay doi
+        if ($request->has('image')) {
+            //neu ton tai ten anh nay roi thi xoa anh cu di
+            if (Storage::exists('public/images/' . $product->image)) {
+                Storage::delete('public/images/' . $product->image);
+            }
 
-        $this->productRepository->edit($product);
+            //lay doi tuong file tu input "image"
+            $file = $request->file('image');
+            //luu ten khac cho anh can luu
+            $fileName = $product->slug . '.' . $file->getClientOriginalExtension();
+            //luu anh vao duong dan storage/pulic/images -- luon luon luu vao storage nen ko can phai ghi.
+            // cau truc public/path --path la duong dan de luu.
+            $file->storeAs('public/images', $fileName);
+            $product->image = $fileName;
+        }
+        $this->productRepository->update($product);
     }
 
     public function delete($id)
@@ -87,7 +94,7 @@ class ProductService implements ProductServiceInterface
 
     public function search($keyword)
     {
-        // TODO: Implement search() method.
+        return $this->productRepository->search($keyword);
     }
 
     public function findById($id)

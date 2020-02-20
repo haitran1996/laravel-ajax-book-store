@@ -1,10 +1,11 @@
 @extends('layout.admin')
-@section('title', 'Create user');
+@section('title', 'Create user')
 @section('content')
     @section('path')
         <li><i class="fa fa-user"></i><a href="{{ route('admin.user.index') }}">User</a></li>
         <li><i class="fa fa-user"></i>Create User</li>
         @endsection
+@can('curd-user')
     <div class="row">
         <div class="col-lg-12">
             <section class="panel">
@@ -13,7 +14,8 @@
                 </header>
                 <div class="panel-body">
                     <div class="form">
-                        <form class="form-validate form-horizontal" method="post" action="{{route('admin.user.store')}}">
+                        <form class="form-validate form-horizontal" method="post"
+                              action="{{route('admin.user.store')}}">
                             @csrf
                             <div class="form-group ">
                                 <label for="cname" class="control-label col-lg-2">Name <span class="required">*</span></label>
@@ -49,7 +51,7 @@
                             <div class="form-group ">
                                 <label for="" class="control-label col-lg-2">Re-type Password <span class="required">*</span></label>
                                 <div class="col-lg-10">
-                                    <input class="form-control " id="" type="password"
+                                    <input class="form-control" type="password"
                                            name="password_confirmation" required />
                                 </div>
                             </div>
@@ -66,4 +68,5 @@
             </section>
         </div>
     </div>
+    @endcan
     @endsection
