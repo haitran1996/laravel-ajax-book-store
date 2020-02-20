@@ -92,7 +92,7 @@
         // bang cach set class cho no la con mat dong
         //chuyen type trong o password thanh dang text tuc la nhinn thay duoc
         if ($(this).attr('class') === 'fa fa-eye') {
-            $(this).attr('class','fa fa-eye-slash');
+            $(this).attr('class','<i class="fa fa-eye-slash"></i>');
             $('#password').attr('type','text');
         } else {
             //neu thuoc tinh class cua eye la con mat dong

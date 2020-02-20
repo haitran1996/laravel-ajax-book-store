@@ -23,7 +23,10 @@ class LoginController extends Controller
         ];
 
         if (Auth::attempt($data)){
-            return redirect('/admin');
+            if (Auth::user()->role == RoleConstant::ADMIN) {
+                return redirect('/admin');
+            }
+            return redirect('/shop');
         }
         return back();
     }
