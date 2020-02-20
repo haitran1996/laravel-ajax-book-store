@@ -8,7 +8,6 @@
             <header class="panel-heading">
                 Advanced Table
             </header>
-
             <table class="table table-striped table-advance table-hover">
                 <tbody>
                 <tr>
@@ -18,13 +17,11 @@
                     <th><i class="icon_calendar"></i>Price</th>
                     <th><i class="icon_mail_alt"></i> Description</th>
                     <th></th>
-
-
-
                 </tr>
-                <tr>
-                    @forelse($products as $key=> $product)
-                    <td>{{++$key}}</td>
+                <tbody id="list-product">
+                @forelse($products as $key=> $product)
+                    <tr>
+                    <th scope="row">{{++$key}}</th>
                     <td>{{$product->name}}</td>
                         <td><img src="{{asset("storage/images/".$product->image)}}" alt="No image" style="height: 100px"></td>
                         <td>{{$product->price}}</td>
@@ -41,6 +38,7 @@
                         <td colspan="6" style="text-align: center">No data display</td>
                     </tr>
                 @endforelse
+                </tbody>
                 </tbody>
             </table>
         </section>

@@ -21,8 +21,8 @@ class LoginController extends Controller
             'email' => $request->email,
             'password'=>$request->password
         ];
-
-        if (Auth::attempt($data)){
+        $remember = $request->remember;
+        if (Auth::attempt($data,$remember)){
             if (Auth::user()->role == RoleConstant::ADMIN) {
                 return redirect('/admin');
             }

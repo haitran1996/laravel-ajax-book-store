@@ -42,19 +42,16 @@ Route::group(['middleware' => 'web'], function(){
             Route::get('/search', 'UserController@search')->name('admin.user.search');
         });
 
-        Route::get('form', function () {
-            return view('admin.form');
-        });
-        Route::prefix('product')->group(function (){
-            Route::get('/','ProductController@index')->name('product.list');
-            Route::get('/create','ProductController@create')->name('product.create');
-            Route::post('/store','ProductController@store')->name('product.store');
-            Route::get('/{id}/delete','ProductController@delete')->name('product.delete');
-            Route::get('/{id}/edit','ProductController@edit')->name('product.edit');
-            Route::post('/{id}/update','ProductController@update')->name('product.update');
-            Route::post('/search','ProductController@search')->name('product.search');
-        });
 
+    Route::prefix('product')->group(function (){
+        Route::get('/','ProductController@index')->name('product.list');
+        Route::get('/create','ProductController@create')->name('product.create');
+        Route::post('/store','ProductController@store')->name('product.store');
+        Route::get('/{id}/delete','ProductController@delete')->name('product.delete');
+        Route::get('/{id}/edit','ProductController@edit')->name('product.edit');
+        Route::post('/{id}/update','ProductController@update')->name('product.update');
+        Route::get('/search','ProductController@search')->name('product.search');
+    });
         Route::prefix('/category')->group(function () {
             Route::get('/', 'CategoryController@index')->name('category.list');
             Route::get('/create', 'CategoryController@create')->name('category.create');

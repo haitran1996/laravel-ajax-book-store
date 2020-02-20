@@ -16,6 +16,8 @@
     <link href="{{ asset("css/bootstrap-theme.min.css") }}" rel="stylesheet" type="text/css">
     <link href="{{ asset("css/bootstrap-social.css") }}" rel="stylesheet" type="text/css">
     <link href="{{ asset("css/templatemo_style.css") }}" rel="stylesheet" type="text/css">
+{{--    //len doc jquery vao phan down load keo xuong dsn sau day copy 1 path, =>'google' , microsoft deu duoc--}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body class="templatemo-bg-image-1">
 <div class="container">
@@ -62,6 +64,16 @@
                         </div>
                     </div>
 
+                    @error('password')
+                    <p style="color: deeppink">{{ $message }}</p>
+                    @enderror
+                    <label class="checkbox">
+                        <input type="checkbox" value="remember-me" name="remember"> Remember me
+                        <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
+                    </label>
+
+
+
                     <div class="form-group">
                         <div class="col-md-12">
                             <input type="submit" value="Login" class="btn btn-warning">
@@ -93,12 +105,13 @@
     //cu phap $('selector').action
     // chon phan tu co id la eye, tao function khi click vao phan tu co id=eye
     $('#eye').click(function () {
+        console.log('a');
         //attr la ham lay ten thuoc tinh, neu co tham so thi set cai thuoc tinh day bang tham so truyen vao
         //neu thuoc tinh class cua eye == fa fa-eye tuc la dang mo mat thi doi no lai thanh hinh con mat dong
         // bang cach set class cho no la con mat dong
         //chuyen type trong o password thanh dang text tuc la nhinn thay duoc
         if ($(this).attr('class') === 'fa fa-eye') {
-            $(this).attr('class','<i class="fa fa-eye-slash"></i>');
+            $(this).attr('class','fa fa-eye-slash');
             $('#password').attr('type','text');
         } else {
             //neu thuoc tinh class cua eye la con mat dong
