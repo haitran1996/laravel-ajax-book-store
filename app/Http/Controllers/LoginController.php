@@ -25,7 +25,7 @@ class LoginController extends Controller
         if (Auth::attempt($data)){
             return redirect('/admin');
         }
-        return back();
+        return back()->with('wrong', "Wrong password! Try again!");
     }
 
     public function logout()
