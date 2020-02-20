@@ -2,15 +2,19 @@
 
 namespace App\Providers;
 
+use App\Contracts\Blog\BlogRepositoryInterface;
+use App\Contracts\Blog\BlogServiceInterface;
 use App\Contracts\Category\CategoryRepositoryInterface;
 use App\Contracts\Category\CategoryServiceInterface;
 use App\Contracts\Product\ProductRepositoryInterface;
 use App\Contracts\Product\ProductServiceInterface;
 use App\Contracts\User\UserRepositoryInterface;
 use App\Contracts\User\UserServiceInterface;
+use App\Http\Repositories\BlogRepository;
 use App\Http\Repositories\CategoryRepository;
 use App\Http\Repositories\ProductRepository;
 use App\Http\Repositories\UserRepository;
+use App\Http\Services\BlogService;
 use App\Http\Services\CategoryService;
 use App\Http\Services\ProductService;
 use App\Http\Services\UserService;
@@ -41,5 +45,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(UserServiceInterface::class,UserService::class);
         $this->app->singleton(CategoryRepositoryInterface::class,CategoryRepository::class);
         $this->app->singleton(CategoryServiceInterface::class,CategoryService::class);
+        $this->app->singleton(BlogRepositoryInterface::class,BlogRepository::class);
+        $this->app->singleton(BlogServiceInterface::class,BlogService::class);
     }
 }

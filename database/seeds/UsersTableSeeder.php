@@ -3,7 +3,6 @@
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-
 use Illuminate\Support\Str;
 
 class UsersTableSeeder extends Seeder
@@ -15,7 +14,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = new User();
         $user->name = "admin";
         $user->email = 'admin@gmail.com';
         $user->password = Hash::make('admin123');

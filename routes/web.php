@@ -65,6 +65,11 @@ Route::group(['middleware' => 'web'], function(){
             Route::post('/search', 'CategoryController@search')->name('category.search');
 
         });
+      Route::prefix('/blog')->group(function (){
+    Route::get('/', 'BlogController@index')->name('blog.list');
+    Route::get('/create', 'BlogController@create')->name('blog.create');
+    Route::post('/create', 'BlogController@store')->name('blog.store');
+});
     });
 
 
@@ -73,6 +78,5 @@ Route::group(['middleware' => 'web'], function(){
     Route::get('/logout','LoginController@logout')->name('logout');
 
 });
-
 
 
