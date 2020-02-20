@@ -66,17 +66,15 @@
                         <li><span class="save-cost">Save $7.62 (69%)</span></li>
                     </ul>
                     <div class="btn-sec">
-                        <form method="post">
-                            @csrf
-                            <input type="hidden" value="3" name="id">
-                        <button class="btn" id="add-to-cart" type="submit">Add To cart</button>
-                        </form>
+
+                        <a class="btn" id="add-to-cart" href="{{route('cart.add',1)}}">Add To cart</a>
                         <button class="btn black">Buy Now</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <section class="related-books">
         <div class="container">
             <h2>You may also like these book</h2>
@@ -128,30 +126,35 @@
         </div>
     </section>
     @endsection
-@section('add-js')
-    <script>
-        console.log("{{route('cart.add')}}");
-        $("#add-to-cart").on('click', function () {
-            let id = $("input").val();
-            console.log(id);
-            $(function () {
-                $.ajaxSetup({
-                    headers: {
-                        "X-CSRFToken": getCookie("csrftoken")
-                    }
-                });
-            });
+{{--@section('add-js')--}}
+{{--    <script>--}}
+{{--        $("#form-add-cart").submit(function(e) {--}}
 
-            $.ajax({
-                type: "POST",
-                url: "{{route('cart.add')}}",
-                data: {id:id},
-                error: function (message) {
-                    alert(message);
-                }
-            }).done(function (message) {
-                alert(message);
-            });
-        });
-    </script>
-    @endsection
+{{--            e.preventDefault(); // avoid to execute the actual submit of the form.--}}
+
+{{--            let form = $(this);--}}
+{{--            $(function () {--}}
+{{--                $.ajaxSetup({--}}
+{{--                    headers: {--}}
+{{--                        "X-CSRFToken": getCookie("csrftoken")--}}
+{{--                    }--}}
+{{--                });--}}
+{{--            });--}}
+
+{{--            $.ajax({--}}
+{{--                type: "POST",--}}
+{{--                url: "{{route('cart.add')}}",--}}
+{{--                data: form.serialize(), // serializes the form's elements.--}}
+{{--                // success: function(data)--}}
+{{--                // {--}}
+{{--                //     alert(data)// show response from the php script.--}}
+{{--                // }--}}
+{{--            }).done(function (data) {--}}
+{{--                    console.log(data);--}}
+{{--            });--}}
+
+
+{{--        });--}}
+{{--        </script>--}}
+
+{{--    @endsection--}}

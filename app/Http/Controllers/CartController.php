@@ -17,15 +17,14 @@ class CartController extends Controller
 
     public function add(Request $request)
     {
-        if ($request->ajax()) {
-            $id = $request->id;
-            dd($id);
+        $id = $request->id;
 
-            if (array_key_exists($id, $this->cart->items)) {
-                $this->cart->add($id);
-                session()->put('cart', $this->cart);
-            }
+        if (!array_key_exists($id, $this->cart->items)) {
+            $this->cart->add($id);
+            session()->put('cart', $this->cart);
         }
+
+        return back();
     }
 
     public function update(Request $request, $id)

@@ -24,8 +24,9 @@ Route::group(['middleware' => 'web'], function(){
         });
         Route::get('/product-page',function () {
             return view('shop.product-page');
-        });
-        Route::post('/product-page', 'CartController@add')->name('cart.add');
+        })->name('cart');
+        Route::get('/add/{id}', 'CartController@add')->name('cart.add');
+        Route::get('/books', 'ShopController@books')->name('shop.books');
     });
 
     Route::middleware(['checkLogin','checkAdmin'])->prefix('admin')->group(function(){
@@ -62,7 +63,7 @@ Route::group(['middleware' => 'web'], function(){
             Route::get('/delete/{id}', 'CategoryController@delete')->name('category.delete');
             Route::get('/{id}/edit', 'CategoryController@edit')->name('category.edit');
             Route::post('/{id}/update', 'CategoryController@update')->name('category.update');
-            Route::post('/search', 'CategoryController@search')->name('category.search');
+            Route::get('/search', 'CategoryController@search')->name('category.search');
 
         });
     });
