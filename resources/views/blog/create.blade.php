@@ -1,6 +1,6 @@
 @extends('admin.home')
 @section('content')
-    <form action="{{route('blog.store')}}" method="post" >
+    <form action="{{route('admin.blog.store')}}" method="post" >
         @csrf
         <div class="form-group">
             <label for="">Title</label>

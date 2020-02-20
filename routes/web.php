@@ -13,22 +13,22 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => 'web'], function(){
+Route::group(['middleware' => 'web'], function () {
     Route::get('/register', "RegisterController@show")->name("register.show");
     Route::post('/register', "RegisterController@register")->name("register");
 
-    Route::middleware('checkLogin')->prefix('shop')->group(function (){
+    Route::middleware('checkLogin')->prefix('shop')->group(function () {
         Route::get('', 'ShopController@index')->name('shop.home');
         Route::get('/cart', function () {
             return view('shop.shop-cart');
         });
-        Route::get('/product-page',function () {
+        Route::get('/product-page', function () {
             return view('shop.product-page');
         });
         Route::post('/product-page', 'CartController@add')->name('cart.add');
     });
 
-    Route::middleware(['checkLogin','checkAdmin'])->prefix('admin')->group(function(){
+    Route::middleware(['checkLogin', 'checkAdmin'])->prefix('admin')->group(function () {
         Route::get('', function () {
             return view('admin.home');
         })->name('admin.home');
@@ -45,14 +45,14 @@ Route::group(['middleware' => 'web'], function(){
         Route::get('form', function () {
             return view('admin.form');
         });
-        Route::prefix('product')->group(function (){
-            Route::get('/','ProductController@index')->name('product.list');
-            Route::get('/create','ProductController@create')->name('product.create');
-            Route::post('/store','ProductController@store')->name('product.store');
-            Route::get('/{id}/delete','ProductController@delete')->name('product.delete');
-            Route::get('/{id}/edit','ProductController@edit')->name('product.edit');
-            Route::post('/{id}/update','ProductController@update')->name('product.update');
-            Route::post('/search','ProductController@search')->name('product.search');
+        Route::prefix('product')->group(function () {
+            Route::get('/', 'ProductController@index')->name('product.list');
+            Route::get('/create', 'ProductController@create')->name('product.create');
+            Route::post('/store', 'ProductController@store')->name('product.store');
+            Route::get('/{id}/delete', 'ProductController@delete')->name('product.delete');
+            Route::get('/{id}/edit', 'ProductController@edit')->name('product.edit');
+            Route::post('/{id}/update', 'ProductController@update')->name('product.update');
+            Route::post('/search', 'ProductController@search')->name('product.search');
         });
 
         Route::prefix('/category')->group(function () {
@@ -65,17 +65,24 @@ Route::group(['middleware' => 'web'], function(){
             Route::post('/search', 'CategoryController@search')->name('category.search');
 
         });
-      Route::prefix('/blog')->group(function (){
-    Route::get('/', 'BlogController@index')->name('blog.list');
-    Route::get('/create', 'BlogController@create')->name('blog.create');
-    Route::post('/create', 'BlogController@store')->name('blog.store');
-});
+        Route::prefix('/blog')->group(function () {
+            Route::get('/', 'BlogController@index')->name('admin.blog.list');
+            Route::get('/create', 'BlogController@create')->name('admin.blog.create');
+            Route::post('/create', 'BlogController@store')->name('admin.blog.store');
+            Route::get('/delete/{id}', 'BlogController@delete')->name('admin.blog.delete');
+            Route::get('/{id}/edit', 'BlogController@edit')->name('admin.blog.edit');
+            Route::post('/{id}/update', 'BlogController@update')->name('admin.blog.update');
+
+
+
+        });
     });
 
 
-    Route::get('/login','LoginController@index')->name('login.index');
-    Route::post('/login','LoginController@login')->name('login');
-    Route::get('/logout','LoginController@logout')->name('logout');
+    Route::get('/login', 'LoginController@index')->name('login.index');
+    Route::post('/login', 'LoginController@login')->name('login');
+    Route::get('/logout', 'LoginController@logout')->name('logout');
+
 
 });
 

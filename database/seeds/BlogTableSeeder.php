@@ -1,6 +1,5 @@
 <?php
 
-use App\Category;
 use Illuminate\Database\Seeder;
 
 class BlogTableSeeder extends Seeder
@@ -15,7 +14,7 @@ class BlogTableSeeder extends Seeder
         $blog = new \App\Blog();
         $blog->title = 'Quoc dan 18cm la co that';
         $blog->content = 'yuf hdu fheidu d h hiudh ueh fu  hduh geihidhg oiefgyfeoi hgeoi heoih goieirhg oieg hei ';
-        $blog->user_id = '2';
+        $blog->user_id = 1;
         $blog->save();
     }
 }

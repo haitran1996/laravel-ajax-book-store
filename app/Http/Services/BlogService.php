@@ -18,7 +18,7 @@ class BlogService implements BlogServiceInterface
 
     public function all($paginate)
     {
-        return $this->blogRepository->all($paginate=null);
+        return $this->blogRepository->all($paginate = null);
     }
 
     public function create($request)
@@ -30,18 +30,37 @@ class BlogService implements BlogServiceInterface
         $this->blogRepository->store($post);
     }
 
-    public function edit($request, $id)
+
+    public function update($request, $id)
     {
-        // TODO: Implement edit() method.
+
+        $post = $this->blogRepository->findById($id);
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->blogRepository->update($post, $id);
     }
+
 
     public function delete($id)
     {
-        // TODO: Implement delete() method.
+        $post = $this->blogRepository->findById($id);
+        $this->blogRepository->delete($post);
     }
 
     public function search($keyword)
     {
         // TODO: Implement search() method.
+    }
+
+    public function edit($request, $id)
+    {
+        $post = $this->blogRepository->model();
+        $post->fill($request->input());
+        $this->blogRepository->update($post);
+    }
+
+    public function findById($id)
+    {
+        return $this->blogRepository->findById($id);
     }
 }

@@ -30,12 +30,7 @@ class BlogRepository implements BlogRepositoryInterface
 
     public function delete($obj)
     {
-        // TODO: Implement delete() method.
-    }
-
-    public function update($obj)
-    {
-        // TODO: Implement update() method.
+        $obj->delete();
     }
 
     public function store($post)
@@ -43,8 +38,18 @@ class BlogRepository implements BlogRepositoryInterface
         $post->save();
     }
 
+    public function findById($id)
+    {
+        return $this->post->findOrFail($id);
+    }
+
     public function search($keyword)
     {
         // TODO: Implement search() method.
+    }
+
+    public function update($post)
+    {
+        $post->save();
     }
 }
