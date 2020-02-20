@@ -13,18 +13,17 @@
                 <tr>
                     <th><h3><i class="icon_profile"></i> Post Title</h3></th>
                     <th><h3><i class="icon_calendar"></i> Content</h3></th>
-                    <th></th>
                 </tr>
                 @forelse($posts as  $post)
                     <tr>
-                        <td>{{ $post->title }}</td>
+                    th></th>    <td>{{ $post->title }}</td>
                         <td>{{ $post->content }}</td>
                         <td>
+                            <a class="btn btn-success" href="{{route('admin.blog.edit',$post->id)}}"><i class="icon_check_alt2"></i></a>
                             <a
-                                href="" class="btn btn-primary"><i class="icon_plus_alt2"></i></a>
-                            <a
-                                href="" class="btn btn-danger"
-                                onclick="return confirm('Bạn chắc chắn muốn xóa?')"><i class="icon_close_alt2"></i></a>
+                                href="{{route('admin.blog.delete',$post->id)}}" class="btn btn-danger"
+                                onclick="return confirm('Bạn chắc chắn muốn xóa?')"><i class="icon_close_alt2"></i>
+                            </a>
                         </td>
                     </tr>
                 @empty

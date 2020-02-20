@@ -381,8 +381,8 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="{{route('blog.create')}}">Create Blog</a></li>
-                        <li><a class="" href="{{ route('blog.list') }}">List Blog</a></li>
+                        <li><a class="" href="{{route('admin.blog.create')}}">Create Blog</a></li>
+                        <li><a class="" href="{{ route('admin.blog.list') }}">List Blog</a></li>
                     </ul>
                 </li>
                 <li>
