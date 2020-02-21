@@ -54,7 +54,7 @@
 {{--                            C2 phan quyen trong controller'function index'--}}
                             @can('user')
                             <li class="navbar-item">
-                                <a href="{{route('Account')}}" class="nav-link">Account</a>
+                                <a href="{{route('profile')}}" class="nav-link">Account</a>
                             </li>
                             <li class="navbar-item">
                                 <span class="nav-link" style="color: #363636">Hello,{{Auth::user()->name}}</span>

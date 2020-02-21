@@ -13,7 +13,7 @@
                 Advanced Table
             </header>
             <table class="table table-striped table-advance table-hover">
-                <tbody>
+                <thead>
                 <tr>
                     <th>STT</th>
                     <th><i class="icon_profile"></i>Name</th>
@@ -22,6 +22,7 @@
                     <th><i class="icon_mail_alt"></i> Description</th>
                     <th></th>
                 </tr>
+                </thead>
                 <tbody id="list-product">
                 @forelse($products as $key=> $product)
                     <tr>

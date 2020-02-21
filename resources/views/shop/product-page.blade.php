@@ -7,7 +7,7 @@
     <div class="breadcrumb">
         <div class="container">
             <a class="breadcrumb-item" href="{{route('shop.home')}}l">Home</a>
-            <span class="breadcrumb-item active">Terms and Condition</span>
+            <span class="breadcrumb-item active">Books</span>
         </div>
     </div>
     <section class="product-sec">
