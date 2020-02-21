@@ -12,8 +12,13 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         $category = new \App\Category();
-        $category->name = 'sach hay';
-        $category->description = 'danh cho thieu nhi';
+        $category->name = 'Tieng Anh';
+        $category->description = 'Sach Ngoai Ngu';
+        $category->save();
+
+        $category = new \App\Category();
+        $category->name = 'Tieng Nhat';
+        $category->description = 'Sach Ngoai Ngu';
         $category->save();
     }
 }

@@ -23,7 +23,6 @@ class UserController extends Controller
 //        if (!Gate::allows("crud-user")){
 //            abort(403);
 //        }
-
         $paginate =10;
         $users = $this->userService->all($paginate);
         return view('admin.user.list',compact('users'));

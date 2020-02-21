@@ -55,7 +55,30 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-      $products = Product::where('name', 'LIKE', '%'.$request->keyword . '%' )->get();
-      return response()->json(['data'=>$products]);
+        if ($request->ajax()) {
+            $output = '';
+            $products = $this->productService->search($request->keyword);
+            if ($products) {
+                $output = '';
+                foreach ($products as $key => $product) {
+                    $output .=  "<tr>".
+                    "<th scope='row'>".++$key."</th>".
+                    "<td>$product->name</td>".
+                        "<td><img src='".asset('storage/images/'.$product->image)."' alt='No image' style='height: 100px'></td>".
+                        "<td>$product->price</td>".
+                    "<td>$product->desc</td>".
+                    "<td>".
+                        "<div class='btn-group'>".
+                            "<a class='btn btn-success' href="."route('product.edit',$product->id)"."><i class='icon_check_alt2'></i></a>".
+                            "<a class='btn btn-danger' href="."route('product.delete',$product->id)". "onclick='"."return confirm('Are you sure ?')"."><i class='icon_close_alt2'></i></a>".
+                        "</div>".
+                    "</td>".
+                "</tr>";
+                }
+            }
+            return Response($output);
+        }
+//        $users = $this->userService->search($request->keyword);
+//        return view('admin.user.index', compact('users'));
     }
 }
