@@ -31,7 +31,8 @@
     <div class="main-menu">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="{{route('shop.home')}}"><img src="{{asset('images/logo.png')}}" alt="logo"></a>
+                <a class="navbar-brand" href="{{route('shop.home')}}">
+                    <img src="{{asset('images/logo.png')}}" alt="logo"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -44,14 +45,17 @@
                             <a href="{{route("shop.books")}}" class="nav-link">Shop</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="about.html" class="nav-link">About</a>
+                            <a href="{{route("checkout.show")}}" class="nav-link">Check out</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="faq.html" class="nav-link">FAQ</a>
+                            <a href="{{ route('about') }}" class="nav-link">About</a>
                         </li>
 {{--                           C1 phan quyen trong view--}}
 {{--                            C2 phan quyen trong controller'function index'--}}
                             @can('user')
+                            <li class="navbar-item">
+                                <a href="{{route('Account')}}" class="nav-link">Account</a>
+                            </li>
                             <li class="navbar-item">
                                 <span class="nav-link" style="color: #363636">Hello,{{Auth::user()->name}}</span>
                             </li>
@@ -59,9 +63,8 @@
                                 <a href="{{route('logout')}}" class="nav-link">Logout</a>
                             </li>
                             @else
-                            <li class="nav-link">
-                                <a class="" href="{{route('login')}}" style="color: black">Login/</a>
-                                <a class="" href="{{route('register')}}" style="color: black">Register</a>
+                            <li class="navbar-item">
+                                <a class="nav-link" href="{{route('login')}}">Login</a>
                             </li>
                                 @endcan
                     </ul>
@@ -71,24 +74,28 @@
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
                         <span class="quntity">@if (session('cart')) {{ session('cart')->totalItems }} @else 0 @endif</span>
                         </a>
-                        <ul class="dropdown-menu extended notification">
+                        <ul class="dropdown-menu extended notification" style="width: 200px!important;">
 {{--                            <div class="notify-arrow notify-arrow-blue">You have</div>--}}
-                            @forelse(session('cart')->items as $key => $item)
+                            <i style="display: none">{{ $count = 0 }}</i>
+                            @if(session('cart'))
+                            @foreach(session('cart')->items as $key => $item)
                             <li>
-                                <a href="#">
-                                    <span class="label label-primary"><img src="{{ asset("storage/".$item->image)}}" style="width: 20px"></span>
-                                    <span class="small italic pull-right">{{$item->name}}</span>
+                                <a href="{{route('product.show',$item->product->id)}}">
+                                    <span class="label label-primary"><img src="{{ asset("storage/images/".$item->product->image)}}"
+                                                                           style="width: 50px"></span>
+                                    <span class="small italic pull-right">{{$item->product->name}}</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#">See all books</a>
-                            </li>
-                                @if ($key >= 4)
+                                @if ($count++ >= 4)
                                     @break
                                 @endif
-                                @empty
+                                @endforeach
+                                <li>
+                                    <a href="{{route('cart')}}">See all books</a>
+                                </li>
+                            @else
                                 <li>No book in shop cart!</li>
-                                @endforelse
+                                @endif
                         </ul>
                     </div>
                     <form class="form-inline my-2 my-lg-0">
@@ -188,7 +195,16 @@
 <script type="text/javascript" src="{{asset('js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('js/custom.js')}}"></script>
 <script>
+    let url = window.location.href;
+    $('.navbar-item').each(function (index, item) {
+        let href = $(item).find('a').attr('href');
 
+        if (href == url) {
+            $(this).attr('class', "navbar-item active");
+        } else {
+            $(this).attr('class', "navbar-item");
+        }
+    });
 </script>
 @yield('add-js')
 </body>

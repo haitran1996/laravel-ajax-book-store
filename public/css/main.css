@@ -1600,7 +1600,7 @@ h2.title {
   margin: 15px -70px 10px 25px;
 }
 
-.cart_quantity_button a {
+.cart_quantity_button span {
   background:#F0F0E9;
   color: #696763;
   display: inline-block;
@@ -1612,15 +1612,51 @@ h2.title {
   float: left;
 }
 
-
-.cart_quantity_input {
-  color: #696763;
-  float: left;
-  font-size: 16px;
-  text-align: center;
-  font-family: 'Roboto',sans-serif;
-
+.product-quantity .pro-qty .qtybtn {
+    color: #838383;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    padding: 16px 0;
 }
+
+.pro-qty {
+    height: 56px;
+    width: 173px;
+    border: 2px solid #EEF1F2;
+    /*border-radius: 50px;*/
+    text-align: center;
+}
+
+.pro-qty input {
+    width: 50px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    height: 100%;
+}
+
+.pro-qty .qtybtn {
+    color: #838383;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    padding: 16px 0;
+}
+
+/*.cart_quantity_input {*/
+/*  color: #696763;*/
+/*  float: left;*/
+/*  font-size: 16px;*/
+/*  text-align: center;*/
+/*  font-family: 'Roboto',sans-serif;*/
+
+/*}*/
 
 
 .cart_delete  {

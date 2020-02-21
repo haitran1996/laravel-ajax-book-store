@@ -12,7 +12,7 @@ class CartItem
 
     public function __construct($id, $quantity = null)
     {
-        $this->product = Product::findOrFail($id);
+        $this->product = Product::findOrFail($id)->first();
         if ($quantity !== null) {
             $this->quantity = $quantity;
             $this->totalPrice = $quantity * $this->product->price;

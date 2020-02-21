@@ -11,7 +11,7 @@
                             <div class="title">
                                 <h3>welcome to bookstore</h3>
                                 <h5>Discover the best books online with us</h5>
-                                <a href="#" class="btn">shop books</a>
+                                <a href="{{route('shop.books')}}" class="btn">shop books</a>
                             </div>
                         </div>
                     </div>
@@ -62,55 +62,21 @@
                 <hr>
             </div>
             <div class="row">
+                @foreach($recommendes as $book)
                 <div class="col-lg-3 col-md-6">
                     <div class="item">
-                        <img src="{{asset('images/img1.jpg')}}" alt="img">
-                        <h3>how to be a bwase</h3>
-                        <h6><span class="price">$49</span> / <a href="#">Buy Now</a></h6>
+                        <img src="{{asset("storage/images/".$book->image)}}" alt="img">
+                        <h3>{{ $book->name }}</h3>
+                        <h6><span class="price">{{ number_format($book->price) }} VND</span> / <a
+                                href="{{route('product.show', $book->id)}}">Buy Now</a></h6>
                         <div class="hover">
-                            <a href="product-single.html">
+                            <a href="{{route('product.show', $book->id)}}">
                                 <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="item">
-                        <img src="{{asset('images/img2.jpg')}}" alt="img">
-                        <h3>How to write a book...</h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                        <span class="sale">Sale !</span>
-                        <div class="hover">
-                            <a href="product-single.html">
-                                <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="item">
-                        <img src="{{asset('images/img3.jpg')}}" alt="img">
-                        <h3>7-day self publish...</h3>
-                        <h6><span class="price">$49</span> / <a href="#">Buy Now</a></h6>
-                        <div class="hover">
-                            <a href="product-single.html">
-                                <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="item">
-                        <img src="{{asset('images/img4.jpg')}}" alt="img">
-                        <h3>wendy doniger</h3>
-                        <h6><span class="price">$49</span> / <a href="#">Buy Now</a></h6>
-                        <div class="hover">
-                            <a href="product-single.html">
-                                <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -123,8 +89,8 @@
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's printer took a galley of type and Scrambled it to make a type and typesetting industry. Lorem Ipsum has been the book. </p>
             <p>It has survived not only fiveLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's printer took a galley of type and</p>
             <div class="btn-sec">
-                <a href="shop.html" class="btn yellow">shop books</a>
-                <a href="login.html" class="btn black">subscriptions</a>
+                <a href="{{route('shop.books')}}" class="btn yellow">shop books</a>
+                <a href="{{route('login.index')}}" class="btn black">subscriptions</a>
             </div>
         </div>
     </section>
@@ -135,79 +101,19 @@
                 <hr>
             </div>
             <div class="row">
+                @foreach($fewProducts as $book)
                 <div class="col-lg-2 col-md-3 col-sm-4">
                     <div class="item">
-                        <img src="{{asset('images/r1.jpg')}}" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
+                        <img src="{{asset('storage/images/'.$book->image)}}" alt="img">
+                        <h3><a href="{{route('product.show', $book->id)}}">{{ $book->name }}</a></h3>
+                        <h6><span class="price">{{ number_format($book->price) }} VND</span> / <a
+                                href="{{route('product.show', $book->id)}}">Buy Now</a></h6>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="{{asset('images/r2.jpg')}}" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="{{asset('images/r3.jpg')}}" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="{{asset('images/r4.jpg')}}" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="{{asset('images/r5.jpg')}}" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="{{asset('images/r1.jpg')}}" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="{{asset('images/r2.jpg')}}" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="{{asset('images/r3.jpg')}}" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="{{asset('images/r4.jpg')}}" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
-                    <div class="item">
-                        <img src="{{asset('images/r5.jpg')}}" alt="img">
-                        <h3><a href="#">Keepers of the kalachakara</a></h3>
-                        <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="btn-sec">
-                <a href="#" class="btn gray-btn">view all books</a>
+                <a href="{{route('shop.books')}}" class="btn gray-btn">view all books</a>
             </div>
         </div>
     </section>
@@ -244,9 +150,9 @@
                         <h3>Top 50% OFF on Selected</h3>
                         <h6>We are now offering some good discount
                             on selected books go and shop them</h6>
-                        <a href="products.html" class="btn blue-btn">view all books</a>
+                        <a href="{{route('shop.books')}}" class="btn blue-btn">view all books</a>
                         <span class="icon-point percentage">
-                            <img src="images/precentagae.png" alt="">
+                            <img src="{{asset('images/precentagae.png')}}" alt="">
                         </span>
                     </div>
                 </div>
@@ -255,8 +161,8 @@
                         <h3>Shop $ 500 Above and Get Extra!</h3>
                         <h6>We are now offering some good discount
                             on selected books go and shop them</h6>
-                        <a href="products.html" class="btn blue-btn">view all books</a>
-                        <span class="icon-point amount"><img src="images/amount.png" alt=""></span>
+                        <a href="{{route('shop.books')}}" class="btn blue-btn">view all books</a>
+                        <span class="icon-point amount"><img src="{{asset('images/amount.png')}}" alt=""></span>
                     </div>
                 </div>
             </div>
