@@ -49,4 +49,33 @@ class PublisherController extends Controller
         $this->publisherService->edit($request,$id);
         return redirect()->route('admin.publisher.list');
     }
+
+
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = '';
+            $publishers = $this->publisherService->search($request->keyword);
+            if ($publishers) {
+                $output = '';
+                foreach ($publishers as $key => $publisher) {
+                    $output .= "<tr>".
+                        "<td>$publisher->name</td>".
+                        "<td></td>".
+                        "<td>".
+                        "<div class='btn-group'>".
+                        "<a class='btn btn-primary' href=".route('admin.publisher.edit', $publisher->id)."><i class='icon_plus_alt2'></i></a>".
+                        "<a class='btn btn-danger' href=".route('admin.publisher.delete', $publisher->id)."><i class='icon_close_alt2'></i></a>".
+                        "</div>".
+                        "</td></tr>";
+                }
+            };
+            if ($output == '') {
+                $output= "<tr><td>No data searched. Try another keyword!</td></tr>";
+            }
+            return Response($output);
+        }
+//        $users = $this->userService->search($request->keyword);
+//        return view('admin.user.index', compact('users'));
+    }
 }

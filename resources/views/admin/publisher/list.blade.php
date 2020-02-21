@@ -27,7 +27,7 @@
                         <td></td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-primary" href="{{route('admin.publisher.edit', $publisher->id)}}"><i class="icon_plus_alt2"></i></a>
+                                <a class="btn btn-success" href="{{route('admin.publisher.edit',$publisher->id)}}"><i class="icon_check_alt2"></i></a>
                                 <a class="btn btn-danger" href="{{route('admin.publisher.delete', $publisher->id)}}"><i class="icon_close_alt2"></i></a>
                             </div>
                         </td>
@@ -45,3 +45,21 @@
         </section>
     </div>
 </div>
+
+<script>
+    $('#publisher').on('keyup',function(){
+        $value = $(this).val();
+        $.ajax({
+            type: 'GET',
+            url: '{{ route('admin.publisher.search') }}',
+            data: {
+                'keyword': $value
+            },
+            success:function(data){
+                $('tbody').html(data);
+            }
+        });
+    });
+    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+</script>
+@endsection

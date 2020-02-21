@@ -43,7 +43,7 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function search($keyword)
     {
-        return $this->product->where('name','like',"%$keyword%")->paginate(5);
+        return Product::where('name','like',"%$keyword%")->get();
     }
 
     public function findById($id)

@@ -69,8 +69,8 @@ class ProductController extends Controller
                     "<td>$product->desc</td>".
                     "<td>".
                         "<div class='btn-group'>".
-                            "<a class='btn btn-success' href="."route('product.edit',$product->id)"."><i class='icon_check_alt2'></i></a>".
-                            "<a class='btn btn-danger' href="."route('product.delete',$product->id)". "onclick='"."return confirm('Are you sure ?')"."><i class='icon_close_alt2'></i></a>".
+                            "<a class='btn btn-success' href=".route('product.edit',$product->id)."><i class='icon_check_alt2'></i></a>".
+                            "<a class='btn btn-danger' href=".route('product.delete',$product->id). "onclick='"."return confirm('Are you sure ?')"."><i class='icon_close_alt2'></i></a>".
                         "</div>".
                     "</td>".
                 "</tr>";

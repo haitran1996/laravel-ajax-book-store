@@ -29,7 +29,7 @@
                         <tr>
                             <td class="cart_product">
                                 <a href=""><img src="{{asset('storage/images/'.$item->product->image)}}"
-                                                style="width: 100px" alt=""></a>
+                                                style="margin-left: -21px; width: 100px" alt=""></a>
                             </td>
                             <td class="cart_description">
                                 <h4><a href="{{route('product.show', $item->product->id)}}">{{$item->product->name}}</a></h4>

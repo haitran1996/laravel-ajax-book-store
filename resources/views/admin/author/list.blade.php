@@ -27,8 +27,8 @@
                             <td></td>
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn btn-primary" href="{{route('admin.author.edit', $author->id)}}"><i class="icon_plus_alt2"></i></a>
-                                    <a class="btn btn-danger" href="{{route('admin.author.delete', $author->id)}}"><i class="icon_close_alt2"></i></a>
+                                    <a class="btn btn-success" href="{{route('admin.author.edit',$author->id)}}"><i class="icon_check_alt2"></i></a>
+                                    <a class="btn btn-danger" onclick="return confirm('Are you sure')" href="{{route('admin.author.delete', $author->id)}} "><i class="icon_close_alt2"></i></a>
                                 </div>
                             </td>
                         </tr>
@@ -55,11 +55,7 @@
                 'keyword': $value
             },
             success:function(data){
-                if (data) {
-                    $('tbody').html(data);
-                } else {
-                    $('tdoby').html("<tr><td>No data searched! Try another keyword!</td></tr>");
-                }
+                $('tbody').html(data);
             }
         });
     });

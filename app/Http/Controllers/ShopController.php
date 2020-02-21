@@ -36,8 +36,8 @@ class ShopController extends Controller
     }
 
     public function showCheckOut()
-    {
-        return view('shop.check-out');
+    {   $cart = session()->get('cart');
+        return view('shop.check-out', compact('cart'));
     }
 
     public function showProduct($id)

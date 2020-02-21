@@ -45,7 +45,7 @@ class PublisherService implements PublisherServiceInterface
 
     public function search($keyword)
     {
-        // TODO: Implement search() method.
+        return $this->publisherRepository->search($keyword);
     }
 
     public function findById($id)

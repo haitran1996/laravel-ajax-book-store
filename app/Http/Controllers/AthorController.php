@@ -58,16 +58,19 @@ class AthorController extends Controller
             if ($authors) {
                 $output = '';
                 foreach ($authors as $key => $author) {
-                    $output .= "<tr>" .
-                        "<td>$author->name</td>" .
-                        "<td></td>" .
-                        "<td>" .
-                        "<div class='btn-group'>" .
-                        "<a class='btn btn-primary' href=" . route('admin.author.edit', $author->id) . "><i class='icon_plus_alt2'></i></a>" .
-                        "<a class='btn btn-danger' href=" . route('admin.author.delete', $author->id) . "><i class='icon_close_alt2'></i></a>" .
-                        "</div>" .
+                    $output .= "<tr>".
+                        "<td>$author->name</td>".
+                        "<td></td>".
+                        "<td>".
+                        "<div class='btn-group'>".
+                        "<a class='btn btn-primary' href=".route('admin.author.edit', $author->id)."><i class='icon_plus_alt2'></i></a>".
+                        "<a class='btn btn-danger' href=".route('admin.author.delete', $author->id)."><i class='icon_close_alt2'></i></a>".
+                        "</div>".
                         "</td></tr>";
                 }
+            };
+            if ($output == '') {
+                $output= "<tr><td>No data searched. Try another keyword!</td></tr>";
             }
             return Response($output);
         }

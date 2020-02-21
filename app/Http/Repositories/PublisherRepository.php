@@ -43,7 +43,7 @@ class PublisherRepository implements PublisherRepositoryInterface
 
     public function search($keyword)
     {
-        // TODO: Implement search() method.
+        return $this->publisher->where('name','like',"%$keyword%")->get();
     }
 
     public function findById($id)

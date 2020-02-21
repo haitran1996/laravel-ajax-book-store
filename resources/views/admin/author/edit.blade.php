@@ -16,7 +16,7 @@
                     <form class="form-validate form-horizontal" method="post" action="{{route('admin.author.update',$author->id)}}">
                         @csrf
                         <div class="form-group ">
-                            <label for="cname" class="control-label col-lg-2">Role <span class="required">*</span></label>
+                            <label for="cname" class="control-label col-lg-2">Name <span class="required">*</span></label>
                             <div class="col-lg-10">
                                 <input class="form-control" id="cname" name="name"
                                        value="{{$author->name}}" minlength="5" type="text" required />

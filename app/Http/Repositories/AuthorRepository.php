@@ -43,7 +43,7 @@ class AuthorRepository implements AuthorRepositoryInterface
 
     public function search($keyword)
     {
-        // TODO: Implement search() method.
+        return $this->author->where('name','like',"%$keyword%")->get();
     }
 
     public function findById($id)

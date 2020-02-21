@@ -82,15 +82,16 @@ Route::group(['middleware' => 'web'], function () {
             Route::get('/{id}/delete','AthorController@delete')->name('admin.author.delete');
             Route::get('/{id}/edit','AthorController@edit')->name('admin.author.edit');
             Route::post('/{id}/update','AthorController@update')->name('admin.author.update');
-            Route::post('/search','AthorController@search')->name('admin.author.search');
+            Route::get('/search','AthorController@search')->name('admin.author.search');
         });
         Route::prefix('/publisher')->group(function (){
             Route::get('/','PublisherController@index')->name('admin.publisher.list');
             Route::get('/create','PublisherController@create')->name('admin.publisher.create');
             Route::post('/store','PublisherController@store')->name('admin.publisher.store');
-            Route::get('/{id}delete','PublisherController@delete')->name('admin.publisher.delete');
-            Route::get('/{id}edit','PublisherController@edit')->name('admin.publisher.edit');
-            Route::post('/{id}update','PublisherController@update')->name('admin.publisher.update');
+            Route::get('/{id}/delete','PublisherController@delete')->name('admin.publisher.delete');
+            Route::get('/{id}/edit','PublisherController@edit')->name('admin.publisher.edit');
+            Route::post('/{id}/update','PublisherController@update')->name('admin.publisher.update');
+            Route::get('/search','PublisherController@search')->name('admin.publisher.search');
         });
     });
 
