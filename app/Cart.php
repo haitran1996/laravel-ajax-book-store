@@ -33,8 +33,8 @@ class Cart
 
     public function add($id)
     {
-        $this->items[$id] = $this->getProductById($id);
-        $this->totalPrice += $this->items[$id]->price;
+        $this->items[$id] = new CartItem($this->getProductById($id),1);
+        $this->totalPrice += $this->items[$id]->product->price;
         $this->totalItems++;
     }
 
@@ -49,8 +49,9 @@ class Cart
 
     public function delete($id)
     {
-        unset($this->items[$id]);
+        $this->totalPrice -= $this->items[$id]->totalPrice;
         $this->totalItems--;
+        unset($this->items[$id]);
     }
 
     public function clear()

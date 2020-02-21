@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use http\Env\Response;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -15,10 +16,9 @@ class CartController extends Controller
         $this->cart = new Cart($cart);
     }
 
-    public function add(Request $request)
+    public function add($id)
     {
-        $id = $request->id;
-
+        $this->cart = new Cart(session()->get('cart'));
         if (!array_key_exists($id, $this->cart->items)) {
             $this->cart->add($id);
             session()->put('cart', $this->cart);
@@ -29,16 +29,21 @@ class CartController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->cart->update($request, $id);
-        session()->put('cart', $this->cart);
+        if ($request->ajax()) {
+            $this->cart->update($request, $id);
+            session()->put('cart', $this->cart);
+        }
+        return response('abc');
     }
 
     public function delete($id)
     {
+        $this->cart = new Cart(session()->get('cart'));
         if (array_key_exists($id, $this->cart->items)) {
             $this->cart->delete($id);
-            session()->put($this->cart);
+            session()->put('cart',$this->cart);
         }
+        return back();
     }
 
     public function clear()

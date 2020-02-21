@@ -12,55 +12,21 @@
             <h2>highly recommendes books</h2>
             <div class="recomended-sec">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item">
-                            <img src="images/img1.jpg" alt="img">
-                            <h3>how to be a bwase</h3>
-                            <h6><span class="price">$49</span> / <a href="#">Buy Now</a></h6>
-                            <div class="hover">
-                                <a href="product-single.blade.php">
-                                    <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
-                                </a>
+                    @foreach($recommendes as $book)
+                        <div class="col-lg-3 col-md-6">
+                            <div class="item">
+                                <img src="{{asset("storage/images/".$book->image)}}" alt="img">
+                                <h3>{{ $book->name }}</h3>
+                                <h6><span class="price">{{ number_format($book->price) }} VND</span> / <a
+                                        href="{{route('product.show', $book->id)}}">Buy Now</a></h6>
+                                <div class="hover">
+                                    <a href="{{route('product.show', $book->id)}}">
+                                        <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item">
-                            <img src="images/img2.jpg" alt="img">
-                            <h3>How to write a book...</h3>
-                            <h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>
-                            <span class="sale">Sale !</span>
-                            <div class="hover">
-                                <a href="product-single.blade.php">
-                                    <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item">
-                            <img src="images/img3.jpg" alt="img">
-                            <h3>7-day self publish...</h3>
-                            <h6><span class="price">$49</span> / <a href="#">Buy Now</a></h6>
-                            <div class="hover">
-                                <a href="product-single.blade.php">
-                                    <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item">
-                            <img src="images/img4.jpg" alt="img">
-                            <h3>wendy doniger</h3>
-                            <h6><span class="price">$49</span> / <a href="#">Buy Now</a></h6>
-                            <div class="hover">
-                                <a href="product-single.blade.php">
-                                    <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <h2>recently added books to our store</h2>
@@ -69,16 +35,18 @@
                     @foreach($books as $key => $book)
                     <div class="col-md-3">
                         <div class="item">
-                            <img src="{{ asset('storage/'.$book->image) }}" alt="img">
+                            <img src="{{ asset('storage/images/'.$book->image) }}" alt="img"
+                                 style="    ">
                             <h3><a href="#">{{ $book->name }}</a></h3>
                             <h6><span class="price">$ {{number_format($book->price)}}
-                                </span> / <a href="{{route('cart')}}">Buy Now</a></h6>
+                                </span> / <a href="{{route('product.show', $book->id)}}">Buy Now</a></h6>
                         </div>
                     </div>
                         @endforeach
                 </div>
                 <div class="btn-sec">
-                    <a href="products.html" class="btn gray-btn">load More books</a>
+{{--                    <a href="#" class="btn gray-btn">load More books</a>--}}
+                    {{ $books->links() }}
                 </div>
             </div>
         </div>

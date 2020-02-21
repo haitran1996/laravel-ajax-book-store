@@ -17,16 +17,20 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/register', "RegisterController@show")->name("register.show");
     Route::post('/register', "RegisterController@register")->name("register");
 
-    Route::middleware('checkLogin')->prefix('shop')->group(function () {
+    Route::prefix('shop')->group(function () {
         Route::get('', 'ShopController@index')->name('shop.home');
-        Route::get('/cart', function () {
-            return view('shop.shop-cart');
-        });
-        Route::get('/product-page', function () {
-            return view('shop.product-page');
-        })->name('cart');
+        Route::get('/cart', 'ShopController@cart')->name('cart');
+        Route::get('/{id}/books', "ShopController@show")->name('product.show');
         Route::get('/add/{id}', 'CartController@add')->name('cart.add');
         Route::get('/books', 'ShopController@books')->name('shop.books');
+        Route::get('/{id}/cart', "CartController@delete")->name('cart.delete');
+        Route::post('/cart/{id}', "CartController@update")->name('cart.update');
+        Route::get("/checkout","ShopController@showCheckOut")->name('checkout.show');
+        Route::post("/checkout","ShopController@checkOut")->name('checkout');
+        Route::get('/about', function () {
+            return view('shop.about');
+        })->name('about');
+        Route::get('/profile', "ShopController@profile")->name('profile');
     });
 
     Route::middleware(['checkLogin', 'checkAdmin'])->prefix('admin')->group(function () {
@@ -97,5 +101,8 @@ Route::group(['middleware' => 'web'], function () {
 
 
 });
+
+Route::get('/redirect/{social}', 'SocialAuthController@redirect')->name('redirect');
+Route::get('/callback/{social}', 'SocialAuthController@callback')->name('callback');
 
 

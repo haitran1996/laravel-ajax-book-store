@@ -97,7 +97,7 @@ class UserController extends Controller
                     $output .= "<tr>".
                             "<td>$user->name</td>".
                             "<td>$user->created_at</td>".
-                            "<td>$user->emai</td>".
+                            "<td>$user->email</td>".
                             "<td></td>".
                             "<td>".
                                 "<div class='btn-group'>".
@@ -106,8 +106,10 @@ class UserController extends Controller
                                 "</div>".
                            "</td></tr>";
                 }
+            };
+            if ($output == '') {
+                $output= "<tr><td>No data searched. Try another keyword!</td></tr>";
             }
-
             return Response($output);
         }
 //        $users = $this->userService->search($request->keyword);

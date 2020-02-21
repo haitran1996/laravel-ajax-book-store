@@ -65,11 +65,7 @@
                 'keyword': $value
             },
             success:function(data){
-                if (data) {
-                    $('tbody').html(data);
-                } else {
-                    $('tdoby').html("<tr><td>No data searched! Try another keyword!</td></tr>");
-                }
+                $('tbody').html(data);
             }
         });
     });
