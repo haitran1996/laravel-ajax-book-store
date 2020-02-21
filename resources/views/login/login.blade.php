@@ -81,7 +81,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
-                            <a href="" class="text-center">Not have any account?</a>
+                            <a href="{{route('register.show')}}" class="text-center">Not have any account?</a>
                         </div>
                     </div>
                 </div>
@@ -89,10 +89,12 @@
                     <label class="margin-bottom-15">
                         One-click sign in using other services. Credit goes to <a rel="nofollow" href="http://lipis.github.io/bootstrap-social/">Bootstrap Social</a> for social sign in buttons.
                     </label>
-                    <a class="btn btn-block btn-social btn-facebook margin-bottom-15">
+                    <a class="btn btn-block btn-social btn-facebook margin-bottom-15"
+                    href="{{route('redirect','facebook')}}">
                         <i class="fa fa-facebook"></i> Sign in with Facebook
                     </a>
-                    <a class="btn btn-block btn-social btn-google-plus">
+                    <a class="btn btn-block btn-social btn-google-plus"
+                    href="{{route('redirect','google')}}">
                         <i class="fa fa-google-plus"></i> Sign in with Google
                     </a>
                 </div>

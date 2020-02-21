@@ -1,5 +1,5 @@
 @extends('layout.admin')
-@section('repo','Product')
+@section('repo','product')
 @section('content')
 @section('path')
     <li><i class=""></i><a href="{{route('product.list')}}">Product</a></li>
@@ -49,7 +49,6 @@
         {{$products->links()}}
     </div>
 </div>
-
 <script>
     $('#product').on('keyup',function(){
         $value = $(this).val();
@@ -60,11 +59,7 @@
                 'keyword': $value
             },
             success:function(data){
-                if (data) {
-                    $('tbody').html(data);
-                } else {
-                    $('tdoby').html("<tr><td>No data searched! Try another keyword!</td></tr>");
-                }
+                $('tbody').html(data);
             }
         });
     });

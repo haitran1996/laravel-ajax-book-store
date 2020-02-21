@@ -45,7 +45,7 @@ class AuthorService implements AuthorServiceInterface
 
     public function search($keyword)
     {
-        // TODO: Implement search() method.
+        return $this->authorRepository->search($keyword);
     }
 
     public function findById($id)

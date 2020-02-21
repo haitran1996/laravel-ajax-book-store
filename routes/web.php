@@ -17,16 +17,20 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/register', "RegisterController@show")->name("register.show");
     Route::post('/register', "RegisterController@register")->name("register");
 
-    Route::middleware('checkLogin')->prefix('shop')->group(function () {
+    Route::prefix('shop')->group(function () {
         Route::get('', 'ShopController@index')->name('shop.home');
-        Route::get('/cart', function () {
-            return view('shop.shop-cart');
-        });
-        Route::get('/product-page', function () {
-            return view('shop.product-page');
-        })->name('cart');
+        Route::get('/cart', 'ShopController@cart')->name('cart');
+        Route::get('/{id}/books', "ShopController@show")->name('product.show');
         Route::get('/add/{id}', 'CartController@add')->name('cart.add');
         Route::get('/books', 'ShopController@books')->name('shop.books');
+        Route::get('/{id}/cart', "CartController@delete")->name('cart.delete');
+        Route::post('/cart/{id}', "CartController@update")->name('cart.update');
+        Route::get("/checkout","ShopController@showCheckOut")->name('checkout.show');
+        Route::post("/checkout","ShopController@checkOut")->name('checkout');
+        Route::get('/about', function () {
+            return view('shop.about');
+        })->name('about');
+        Route::get('/profile', "ShopController@profile")->name('profile');
     });
 
     Route::middleware(['checkLogin', 'checkAdmin'])->prefix('admin')->group(function () {
@@ -78,15 +82,16 @@ Route::group(['middleware' => 'web'], function () {
             Route::get('/{id}/delete','AthorController@delete')->name('admin.author.delete');
             Route::get('/{id}/edit','AthorController@edit')->name('admin.author.edit');
             Route::post('/{id}/update','AthorController@update')->name('admin.author.update');
-            Route::post('/search','AthorController@search')->name('admin.author.search');
+            Route::get('/search','AthorController@search')->name('admin.author.search');
         });
         Route::prefix('/publisher')->group(function (){
             Route::get('/','PublisherController@index')->name('admin.publisher.list');
             Route::get('/create','PublisherController@create')->name('admin.publisher.create');
             Route::post('/store','PublisherController@store')->name('admin.publisher.store');
-            Route::get('/{id}delete','PublisherController@delete')->name('admin.publisher.delete');
-            Route::get('/{id}edit','PublisherController@edit')->name('admin.publisher.edit');
-            Route::post('/{id}update','PublisherController@update')->name('admin.publisher.update');
+            Route::get('/{id}/delete','PublisherController@delete')->name('admin.publisher.delete');
+            Route::get('/{id}/edit','PublisherController@edit')->name('admin.publisher.edit');
+            Route::post('/{id}/update','PublisherController@update')->name('admin.publisher.update');
+            Route::get('/search','PublisherController@search')->name('admin.publisher.search');
         });
     });
 
@@ -97,5 +102,8 @@ Route::group(['middleware' => 'web'], function () {
 
 
 });
+
+Route::get('/redirect/{social}', 'SocialAuthController@redirect')->name('redirect');
+Route::get('/callback/{social}', 'SocialAuthController@callback')->name('callback');
 
 
