@@ -23,6 +23,7 @@ class ProductsTableSeeder extends Seeder
         $product->category_id = 1;
         $product->save();
     }
+  
     public function run()
     {
         for($i=0; $i<20; $i++) {

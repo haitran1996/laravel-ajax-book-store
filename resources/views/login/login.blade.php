@@ -68,7 +68,7 @@
                     <p style="color: deeppink">{{ $message }}</p>
                     @enderror
                     <label class="checkbox">
-                        <input type="checkbox" value="remember-me" name="remember"> Remember me
+                        <input type="checkbox" value="remember-me" name="remember" style="position: absolute;margin-left: 1px"><span style="margin-left: 20px">Remember me</span>
                         <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
                     </label>
 

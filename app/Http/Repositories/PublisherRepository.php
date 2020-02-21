@@ -4,16 +4,16 @@
 namespace App\Http\Repositories;
 
 
-use App\Contracts\Product\ProductRepositoryInterface;
-use App\Product;
+use App\Contracts\Publisher\PublisherRepositoryInterface;
+use App\Publisher;
 
-class ProductRepository implements ProductRepositoryInterface
+class PublisherRepository implements PublisherRepositoryInterface
 {
-    protected $product;
 
-    public function __construct(Product $product)
+    protected $publisher;
+    public function __construct(Publisher $publisher)
     {
-        $this->product = $product;
+        $this->publisher = $publisher;
     }
 
     public function model()
@@ -23,7 +23,7 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function all($paginate)
     {
-        return $this->product->all();
+        // TODO: Implement all() method.
     }
 
     public function delete($obj)
@@ -43,13 +43,11 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function search($keyword)
     {
-        return $this->product->where('name','like',"%$keyword%")->paginate(5);
+        // TODO: Implement search() method.
     }
 
     public function findById($id)
     {
-        return $this->product->findOrFail($id);
+        return $this->publisher->findOrFail($id);
     }
-
-
 }

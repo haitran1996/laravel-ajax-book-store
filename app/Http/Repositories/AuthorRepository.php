@@ -4,16 +4,16 @@
 namespace App\Http\Repositories;
 
 
-use App\Contracts\Product\ProductRepositoryInterface;
-use App\Product;
+use App\Author;
+use App\Contracts\Author\AuthorRepositoryInterface;
 
-class ProductRepository implements ProductRepositoryInterface
+class AuthorRepository implements AuthorRepositoryInterface
 {
-    protected $product;
+    protected $author;
 
-    public function __construct(Product $product)
+    public function __construct(Author $author)
     {
-        $this->product = $product;
+        $this->author = $author;
     }
 
     public function model()
@@ -23,7 +23,7 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function all($paginate)
     {
-        return $this->product->all();
+        return $this->author->all();
     }
 
     public function delete($obj)
@@ -43,13 +43,11 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function search($keyword)
     {
-        return $this->product->where('name','like',"%$keyword%")->paginate(5);
+        // TODO: Implement search() method.
     }
 
     public function findById($id)
     {
-        return $this->product->findOrFail($id);
+        return $this->author->findOrFail($id);
     }
-
-
 }
