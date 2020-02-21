@@ -24,13 +24,14 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/add/{id}', 'CartController@add')->name('cart.add');
         Route::get('/books', 'ShopController@books')->name('shop.books');
         Route::get('/{id}/cart', "CartController@delete")->name('cart.delete');
-        Route::post('/cart/{id}', "CartController@update")->name('cart.update');
+        Route::post('/cart', "CartController@update")->name('cart.update');
         Route::get("/checkout","ShopController@showCheckOut")->name('checkout.show');
         Route::post("/checkout","ShopController@checkOut")->name('checkout');
         Route::get('/about', function () {
             return view('shop.about');
         })->name('about');
         Route::get('/profile', "ShopController@profile")->name('profile');
+
     });
 
     Route::middleware(['checkLogin', 'checkAdmin'])->prefix('admin')->group(function () {

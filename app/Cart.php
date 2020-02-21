@@ -38,13 +38,14 @@ class Cart
         $this->totalItems++;
     }
 
-    public function update($request, $id)
+    public function update($request)
     {
-        $item = new CartItem($this->getProductById($id),$request->quantity);
-        $this->totalPrice += ($item->quantity - $this->items[$id]->quantity)
-                                * $item->product->price;
-        $this->items[$id] = $item;
-
+        foreach($this->items as $key => $item) {
+            $cartItem = new CartItem($key, $request->input("quantity$key"));
+            $this->totalPrice += ($cartItem->quantity - $this->items[$key]->quantity)
+                * $item->product->price;
+            $this->items[$key] = $cartItem;
+        }
     }
 
     public function delete($id)

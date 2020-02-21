@@ -21,9 +21,9 @@
                             <th><i class="icon_profile"></i> Name</th>
                             <th><i class="icon_calendar"></i> Created date</th>
                             <th><i class="icon_mail_alt"></i> Email</th>
-                            <th><i class="icon_pin_alt"></i> Role</th>
-                            <th><i class="icon_cogs"></i> Action</th>
-                            <th></th>
+{{--                            <th><i class="icon_pin_alt"></i> Role</th>--}}
+{{--                            <th><i class="icon_cogs"></i> Action</th>--}}
+{{--                            <th></th>--}}
                         </tr>
                         </thead>
                         <tbody>
@@ -32,13 +32,13 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->created_at  }}</td>
                             <td>{{ $user->email }}</td>
-                            <td></td>
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-primary" href="{{route('admin.user.edit', $user->id)}}"><i class="icon_plus_alt2"></i></a>
-                                    <a class="btn btn-danger" href="{{route('admin.user.delete', $user->id)}}"><i class="icon_close_alt2"></i></a>
-                                </div>
-                            </td>
+{{--                            <td></td>--}}
+{{--                            <td>--}}
+{{--                                <div class="btn-group">--}}
+{{--                                    <a class="btn btn-primary" href="{{route('admin.user.edit', $user->id)}}"><i class="icon_plus_alt2"></i></a>--}}
+{{--                                    <a class="btn btn-danger" href="{{route('admin.user.delete', $user->id)}}"><i class="icon_close_alt2"></i></a>--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
                         </tr>
                             @empty
                             <tr>

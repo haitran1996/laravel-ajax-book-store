@@ -40,6 +40,11 @@ class ShopController extends Controller
         return view('shop.check-out', compact('cart'));
     }
 
+    public function checkout(Request $request)
+    {
+        return back();
+    }
+
     public function showProduct($id)
     {
         $book = Product::findOrFail($id);
@@ -58,5 +63,10 @@ class ShopController extends Controller
         return DB::table('products')
             ->inRandomOrder()
             ->take(10)->get();
+    }
+
+    public function profile()
+    {
+        return view('shop.profile');
     }
 }

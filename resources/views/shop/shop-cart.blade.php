@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
 @endsection
 @section('content')
+    <form method="post" action="{{route('cart.update')}}">
+        @csrf
     <section id="cart_items">
         <div class="container">
             <div class="breadcrumbs">
@@ -32,16 +34,17 @@
                                                 style="margin-left: -21px; width: 100px" alt=""></a>
                             </td>
                             <td class="cart_description">
-                                <h4><a href="{{route('product.show', $item->product->id)}}">{{$item->product->name}}</a></h4>
+                                <h4><a href="{{route('product.show', $item->product->id)}}">{{$item->product->name}}</a>
+                                </h4>
                             </td>
                             <td class="cart_price">
                                 <p>{{number_format($item->product->price)}} VND</p>
                             </td>
                             <td class="cart_quantity">
                                 <div class="pro-qty">
-                                    <input class="quantity_input" type="text" name="quantity" value="1"
-                                           autocomplete="on" size="2">
-                                    <input type="hidden" value="{{$key}}">
+                                    <input class="quantity_input" type="text"
+                                           value="{{$item->quantity}}"
+                                           autocomplete="on" size="2" name="quantity{{$key}}">
                                 </div>
                             </td>
                             <td class="cart_total">
@@ -70,76 +73,87 @@
                     delivery cost.</p>
             </div>
             <div class="row">
-                <div class="col-sm-6">
-                    <div class="chose_area">
-                        <ul class="user_option">
-                            <li>
-                                <input type="checkbox">
-                                <label>Use Coupon Code</label>
-                            </li>
-                            <li>
-                                <input type="checkbox">
-                                <label>Use Gift Voucher</label>
-                            </li>
-                            <li>
-                                <input type="checkbox">
-                                <label>Estimate Shipping & Taxes</label>
-                            </li>
-                        </ul>
-                        <ul class="user_info">
-                            <li class="single_field">
-                                <label>Country:</label>
-                                <select>
-                                    <option>United States</option>
-                                    <option>Bangladesh</option>
-                                    <option>UK</option>
-                                    <option>India</option>
-                                    <option>Pakistan</option>
-                                    <option>Ucrane</option>
-                                    <option>Canada</option>
-                                    <option>Dubai</option>
-                                </select>
+                {{--                <div class="col-sm-6">--}}
+                {{--                    <div class="chose_area">--}}
+                {{--                        <ul class="user_option">--}}
+                {{--                            <li>--}}
+                {{--                                <input type="checkbox">--}}
+                {{--                                <label>Use Coupon Code</label>--}}
+                {{--                            </li>--}}
+                {{--                            <li>--}}
+                {{--                                <input type="checkbox">--}}
+                {{--                                <label>Use Gift Voucher</label>--}}
+                {{--                            </li>--}}
+                {{--                            <li>--}}
+                {{--                                <input type="checkbox">--}}
+                {{--                                <label>Estimate Shipping & Taxes</label>--}}
+                {{--                            </li>--}}
+                {{--                        </ul>--}}
+                {{--                        <ul class="user_info">--}}
+                {{--                            <li class="single_field">--}}
+                {{--                                <label>Country:</label>--}}
+                {{--                                <select>--}}
+                {{--                                    <option>United States</option>--}}
+                {{--                                    <option>Bangladesh</option>--}}
+                {{--                                    <option>UK</option>--}}
+                {{--                                    <option>India</option>--}}
+                {{--                                    <option>Pakistan</option>--}}
+                {{--                                    <option>Ucrane</option>--}}
+                {{--                                    <option>Canada</option>--}}
+                {{--                                    <option>Dubai</option>--}}
+                {{--                                </select>--}}
 
-                            </li>
-                            <li class="single_field">
-                                <label>Region / State:</label>
-                                <select>
-                                    <option>Select</option>
-                                    <option>Dhaka</option>
-                                    <option>London</option>
-                                    <option>Dillih</option>
-                                    <option>Lahore</option>
-                                    <option>Alaska</option>
-                                    <option>Canada</option>
-                                    <option>Dubai</option>
-                                </select>
+                {{--                            </li>--}}
+                {{--                            <li class="single_field">--}}
+                {{--                                <label>Region / State:</label>--}}
+                {{--                                <select>--}}
+                {{--                                    <option>Select</option>--}}
+                {{--                                    <option>Dhaka</option>--}}
+                {{--                                    <option>London</option>--}}
+                {{--                                    <option>Dillih</option>--}}
+                {{--                                    <option>Lahore</option>--}}
+                {{--                                    <option>Alaska</option>--}}
+                {{--                                    <option>Canada</option>--}}
+                {{--                                    <option>Dubai</option>--}}
+                {{--                                </select>--}}
 
-                            </li>
-                            <li class="single_field zip-field">
-                                <label>Zip Code:</label>
-                                <input type="text">
-                            </li>
-                        </ul>
-                        <a class="btn btn-default update" href="">Get Quotes</a>
-                        <a class="btn btn-default check_out" href="">Continue</a>
-                    </div>
-                </div>
-                <div class="col-sm-6">
+                {{--                            </li>--}}
+                {{--                            <li class="single_field zip-field">--}}
+                {{--                                <label>Zip Code:</label>--}}
+                {{--                                <input type="text">--}}
+                {{--                            </li>--}}
+                {{--                        </ul>--}}
+                {{--                        <a class="btn btn-default update" href="">Get Quotes</a>--}}
+                {{--                        <a class="btn btn-default check_out" href="">Continue</a>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
+                <div class="col-sm-12">
                     <div class="total_area">
-                        <ul>
-                            <li>Cart Sub Total <span>$59</span></li>
-                            <li>Eco Tax <span>$2</span></li>
-                            <li>Shipping Cost <span>Free</span></li>
-                            <li>Total <span>$61</span></li>
-                        </ul>
-                        <a class="btn btn-default update" href="">Update</a>
-                        <a class="btn btn-default check_out" href="{{route('checkout.show')}}">
-                            Check Out</a>
+                        <table style="width: 100%; text-align: center" >
+                            <tr>
+                                <th>Cart Sub Total</th>
+                                <th>Eco Tax</th>
+                                <th>Shipping Cost</th>
+                                <th>Total</th>
+                            </tr>
+                            <tr>
+                                <td>{{ number_format($cart->totalPrice) }} VND</td>
+                                <td>10%</td>
+                                <td>Free</td>
+                                <td>{{ number_format($cart->totalPrice * 0.9) }}</td>
+                            </tr>
+                        </table>
+                        <div class="col-sm-4" style="margin-left: 650px">
+                            <input class="btn btn-default update" type="submit" value="UPDATE">
+                            <a class="btn btn-default check_out" href="{{route('checkout.show')}}">
+                                Check Out</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section><!--/#do_action-->
+    </form>
 @endsection
 @section('add-js')
     <script>
@@ -159,6 +173,8 @@
                 }
                 ;
             }
+
+
             $button.parent().find('input').first().val(newVal);
             let id = $button.parent().find('input').last().val();
             console.log(id);

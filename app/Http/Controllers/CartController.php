@@ -27,13 +27,13 @@ class CartController extends Controller
         return back();
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        if ($request->ajax()) {
-            $this->cart->update($request, $id);
-            session()->put('cart', $this->cart);
-        }
-        return response('abc');
+        $this->cart = new Cart(session()->get('cart'));
+        $this->cart->update($request);
+        session()->put('cart', $this->cart);
+        $cart = $this->cart;
+        return view('shop.shop-cart',compact('cart'));
     }
 
     public function delete($id)
