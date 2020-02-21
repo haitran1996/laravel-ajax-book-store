@@ -362,6 +362,31 @@
                         <li><a class="" href="{{ route('admin.user.create') }}">Create</a></li>
                     </ul>
                 </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="fa fa-user"></i>
+                        <span>Author</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="{{ route('admin.author.list') }}">List</a></li>
+                        <li><a class="" href="{{ route('admin.author.create') }}">Add new</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="fa fa-user"></i>
+                        <span>Publisher</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="{{ route('admin.publisher.list') }}">List</a></li>
+                        <li><a class="" href="{{ route('admin.publisher.create') }}">Add new</a></li>
+                    </ul>
+                </li>
+
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
                         <i class="fa fa-list-alt" aria-hidden="true"></i>

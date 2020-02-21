@@ -1,6 +1,10 @@
 @extends('layout.admin')
-@section('repo','product')
+@section('repo','Product')
 @section('content')
+@section('path')
+    <li><i class=""></i><a href="{{route('product.list')}}">Product</a></li>
+    <li><i class="fa fa-th-list"></i>Product list</li>
+@endsection
 <div class="row">
     <div class="col-lg-12">
 
@@ -43,7 +47,27 @@
             </table>
         </section>
         {{$products->links()}}
-
     </div>
 </div>
+
+<script>
+    $('#product').on('keyup',function(){
+        $value = $(this).val();
+        $.ajax({
+            type: 'GET',
+            url: '{{ route('product.search') }}',
+            data: {
+                'keyword': $value
+            },
+            success:function(data){
+                if (data) {
+                    $('tbody').html(data);
+                } else {
+                    $('tdoby').html("<tr><td>No data searched! Try another keyword!</td></tr>");
+                }
+            }
+        });
+    });
+    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+</script>
 @endsection
