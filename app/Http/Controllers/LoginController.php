@@ -23,7 +23,7 @@ class LoginController extends Controller
         ];
         $remember = $request->remember;
         if (Auth::attempt($data,$remember)){
-            if (Auth::user()->role == RoleConstant::ADMIN) {
+            if (Auth::user()->role >= RoleConstant::SUPER_ADMIN) {
                 return redirect('/admin');
             }
             return redirect('/shop');

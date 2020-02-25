@@ -18,7 +18,7 @@ class CheckAdmin
     public function handle($request, Closure $next)
     {
         // lay role cua user hien tai dang dang nhap neu role cua no lhong phai admin thi chuyen no ve shop
-        if (Auth::user()->role != RoleConstant::ADMIN) {
+        if (Auth::user()->role === null) {
             return redirect('/shop');
         }
         return $next($request);

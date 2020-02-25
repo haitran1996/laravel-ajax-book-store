@@ -98,8 +98,10 @@
                                 @endif
                         </ul>
                     </div>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search here..." aria-label="Search">
+                    <form class="form-inline my-2 my-lg-0" method="post" action="{{route('shop.search')}}">
+                        @csrf
+                        <input class="form-control mr-sm-2" type="search"
+                               name="keyword" placeholder="Search here..." aria-label="Search">
                         <span class="fa fa-search"></span>
                     </form>
                 </div>
