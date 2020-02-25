@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\ProductService;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -68,5 +69,12 @@ class ShopController extends Controller
     public function profile()
     {
         return view('shop.profile');
+    }
+
+    public function search(Request $request)
+    {
+        $books = Product::where('name', 'like',"%$request->keyword%")->paginate(20);
+        $recommendes = $this->getRecommendes();
+        return view('shop.books',compact('books','recommendes'));
     }
 }

@@ -20,12 +20,9 @@ class UserController extends Controller
 
     public function index()
     {
-//        if (!Gate::allows("crud-user")){
-//            abort(403);
-//        }
         $paginate =10;
         $users = $this->userService->all($paginate);
-        return view('admin.user.list',compact('users'));
+        return view('admin.user.index',compact('users'));
     }
 
     public function showFormCreate()
@@ -88,26 +85,9 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
-        if ($request->ajax()) {
-            $output = '';
             $users = $this->userService->search($request->keyword);
-            if ($users) {
-                $output = '';
-                foreach ($users as $key => $user) {
-                    $output .= "<tr>".
-                            "<td>$user->name</td>".
-                            "<td>$user->created_at</td>".
-                            "<td>$user->email</td>".
-                            "<td></td>"."</tr>";
-                }
-            };
-            if ($output == '') {
-                $output= "<tr><td>No data searched. Try another keyword!</td></tr>";
-            }
-            return Response($output);
-        }
-//        $users = $this->userService->search($request->keyword);
-//        return view('admin.user.index', compact('users'));
+
+            return view('admin.user.list', compact('users'));
     }
 }
 

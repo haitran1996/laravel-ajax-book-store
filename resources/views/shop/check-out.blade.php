@@ -1,5 +1,11 @@
 @extends('layout.shop')
 @section('content')
+    <div class="breadcrumb">
+        <div class="container">
+            <a class="breadcrumb-item" href="{{route('shop.home')}}l">Home</a>
+            <span class="breadcrumb-item active">Check Out</span>
+        </div>
+    </div>
     <div id="edit-profile" class="tab-pane">
         <section class="panel">
             <div class="panel-body bio-graph-info">
@@ -62,6 +68,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @if ($cart)
                                     @forelse($cart->items as $key => $item)
                                         <tr>
                                             <td class="cart_product">
@@ -94,6 +101,7 @@
                                             <td>No shop cart. Back to shop page!</td>
                                         </tr>
                                     @endforelse
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>

@@ -1,6 +1,7 @@
 @extends('layout.shop')
 @section('title','Book Store')
 @section('content')
+
     <section class="slider">
         <div class="container">
             <div id="owl-demo" class="owl-carousel owl-theme">

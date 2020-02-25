@@ -6,6 +6,6 @@ namespace App\Http\Controllers;
 
 interface RoleConstant
 {
-    const ADMIN = 1;
-    const USER = 2;
+    const SUPER_ADMIN = 1;
+    const ADMIN = 2;
 }

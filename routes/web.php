@@ -31,6 +31,7 @@ Route::group(['middleware' => 'web'], function () {
             return view('shop.about');
         })->name('about');
         Route::get('/profile', "ShopController@profile")->name('profile');
+        Route::post('/books','ShopController@search')->name('shop.search');
 
     });
 
